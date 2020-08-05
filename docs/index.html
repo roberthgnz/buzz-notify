@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notification</title>
+    <style>
+      .buttons {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="buttons">
+      <h1>Top</h1>
+      <button
+        onclick="createNotification({position: 'top left',type: 'success'})"
+      >
+        Success
+      </button>
+      <button
+        onclick="createNotification({position: 'top center',type: 'danger'})"
+      >
+        Danger
+      </button>
+      <button
+        onclick="createNotification({position: 'top right',type: 'warning'})"
+      >
+        Warning
+      </button>
+      <h1>Bottom</h1>
+      <button
+        onclick="createNotification({position: 'bottom left',type: 'success'})"
+      >
+        Success
+      </button>
+      <button
+        onclick="createNotification({position: 'bottom center',type: 'danger'})"
+      >
+        Danger
+      </button>
+      <button
+        onclick="createNotification({position: 'bottom right',type: 'warning'})"
+      >
+        Warning
+      </button>
+    </div>
+
+    <div id="notify"></div>
+
+    <script src="../index.js"></script>
+
+    <script>
+      let count = 1;
+      function createNotification(options) {
+        Notify({ ...options, title: `Notification ${count}` });
+        count++;
+      }
+    </script>
+  </body>
+</html>
