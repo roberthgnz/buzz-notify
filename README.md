@@ -30,6 +30,7 @@ Default is "top right".
     // Overrides default/provided type
     type: 'success',
     
+    // (optional)
     // Notification position
     // Overrides default/provided duration
     position: 'top right',
