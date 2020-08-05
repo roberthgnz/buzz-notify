@@ -4,8 +4,13 @@ Small notifications library
 
 ### How to
 
-In myscript.js:
 
+In myawesomesite.html:
+```html
+<div id="notify"></div>
+```
+
+In myscript.js:
 ```javascript
 Notify("Notification");
 ```
