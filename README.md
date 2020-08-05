@@ -1,2 +1,2 @@
 # buzz-notify
-Small library of notifications
+Small notifications library
