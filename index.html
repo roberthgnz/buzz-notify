@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notification</title>
+    <style>
+      .buttons {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+      #notify {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 10vw;
+      }
+      [data-notify] {
+        position: fixed;
+      }
+      [data-notify="top left"] {
+        top: 10px;
+        left: 10px;
+      }
+      [data-notify="top center"] {
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      [data-notify="top right"] {
+        top: 10px;
+        right: 10px;
+      }
+      [data-notify="bottom left"] {
+        bottom: 10px;
+        left: 10px;
+      }
+      [data-notify="bottom center"] {
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      [data-notify="bottom right"] {
+        bottom: 10px;
+        right: 10px;
+      }
+      [data-notify~="top"] .animate {
+        opacity: 0;
+        margin-top: -10px;
+      }
+      [data-notify~="bottom"] .animate {
+        opacity: 0;
+        margin-bottom: -10px;
+      }
+      .notify {
+        padding: 0.25rem 0.75rem;
+        margin-bottom: 1rem;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+        transition: all 300ms ease 0s;
+      }
+      .notify--success {
+        color: #155724;
+        background-color: #d4edda;
+        border-color: #c3e6cb;
+      }
+      .notify--danger {
+        color: #721c24;
+        background-color: #f8d7da;
+        border-color: #f5c6cb;
+      }
+      .notify--warning {
+        color: #856404;
+        background-color: #fff3cd;
+        border-color: #ffeeba;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="buttons">
+      <h1>Top</h1>
+      <button
+        onclick="createNotification({position: 'top left',type: 'success'})"
+      >
+        Success
+      </button>
+      <button
+        onclick="createNotification({position: 'top center',type: 'danger'})"
+      >
+        Danger
+      </button>
+      <button
+        onclick="createNotification({position: 'top right',type: 'warning'})"
+      >
+        Warning
+      </button>
+      <h1>Bottom</h1>
+      <button
+        onclick="createNotification({position: 'bottom left',type: 'success'})"
+      >
+        Success
+      </button>
+      <button
+        onclick="createNotification({position: 'bottom center',type: 'danger'})"
+      >
+        Danger
+      </button>
+      <button
+        onclick="createNotification({position: 'bottom right',type: 'warning'})"
+      >
+        Warning
+      </button>
+    </div>
+
+    <div id="notify"></div>
+
+    <script src="index.js"></script>
+
+    <script>
+      let count = 1;
+      function createNotification(options) {
+        Notify({ ...options, title: `Notification ${count}` });
+        count++;
+      }
+    </script>
+  </body>
+</html>
