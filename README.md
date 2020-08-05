@@ -50,6 +50,6 @@ Default is "top right".
 
     // (optional)
     // Overrides default/provided duration. Set in ms (milliseconds)
-    duration: 3000,
+    duration: 2000,
   })
 ```
