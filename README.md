@@ -12,7 +12,7 @@ In myawesomesite.html:
 
 In myscript.js:
 ```javascript
-Notify("Notification");
+Notify({title: 'My notification'});
 ```
 
 ### Position
