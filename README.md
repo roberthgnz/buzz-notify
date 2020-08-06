@@ -2,8 +2,10 @@
 
 Small notifications library
 
-### How to
+### Demo
+[https://buzz-js.github.io/buzz-notify/](https://buzz-js.github.io/buzz-notify/)
 
+### How to use
 
 In myawesomesite.html:
 ```html
@@ -14,10 +16,16 @@ In myscript.js:
 ```javascript
 Notify({title: 'My notification'});
 ```
+### Styles
+`type` property require a string. Can be `'success', 'danger', 'warning'`
+
+```javascript
+Notify({title: 'My notification', type: 'success'});
+```
 
 ### Position
 
-`Position` property requires a string with 2 keywords for vertical and horizontal postion.
+`position` property requires a string with 2 keywords for vertical and horizontal postion.
 
 Format: `"<vertical> <horizontal>"`.
 
@@ -49,7 +57,7 @@ Default is "top right".
     html: 'This is <b> content </b>',
 
     // (optional)
-    // Overrides default/provided duration. Set in ms (milliseconds)
+    // Set in ms (milliseconds) If the duration is a negative number, the notification will not be removed.
     duration: 2000,
   })
 ```
