@@ -1,4 +1,4 @@
-# Notify
+# Notify [![GitHub issues](https://img.shields.io/github/issues/buzz-js/buzz-notify)](https://github.com/buzz-js/buzz-notify/issues) [![GitHub forks](https://img.shields.io/github/forks/buzz-js/buzz-notify)](https://github.com/buzz-js/buzz-notify/network) [![GitHub stars](https://img.shields.io/github/stars/buzz-js/buzz-notify)](https://github.com/buzz-js/buzz-notify/stargazers)
 
 Small notifications library
 
