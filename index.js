@@ -79,13 +79,16 @@ document.adoptedStyleSheets = [stylesheet];
  * @param {String} [options.position] - Notification position, can be  'top left', 'top right', 'top center', 'center start', 'center', 'center end', 'bottom left', 'bottom center', or 'bottom right'.
  * @param {Number} [options.duration] - Auto close notification. Set in ms (milliseconds).
  */
-function Notify({
-  title,
-  html = null,
-  type = "success",
-  position = "top right",
-  duration = 2000,
-}) {
+function Notify(
+  {
+    title,
+    html = null,
+    type = "success",
+    position = "top right",
+    duration = 2000,
+  },
+  callback
+) {
   // Create HTML element
   const notity = document.getElementById("notify");
 
@@ -116,6 +119,10 @@ function Notify({
     notifyWrapper.insertAdjacentElement("beforeend", notifyContent);
   }
 
-  // Remove notification
-  setTimeout(() => notifyContent.remove(), duration);
+  if (duration * 1 > 0) {
+    setTimeout(() => {
+      if (typeof callback === "function") callback();
+      notifyContent.remove();
+    }, duration);
+  }
 }
