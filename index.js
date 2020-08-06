@@ -77,7 +77,8 @@ document.adoptedStyleSheets = [stylesheet];
  * @param {DOMString} [options.html] - Sets the HTML markup contained within the notification.
  * @param {String} [options.type] - Can be 'success', 'danger', 'warning'
  * @param {String} [options.position] - Notification position, can be  'top left', 'top right', 'top center', 'center start', 'center', 'center end', 'bottom left', 'bottom center', or 'bottom right'.
- * @param {Number} [options.duration] - Auto close notification. Set in ms (milliseconds).
+ * @param {Number} [options.duration] - Auto close notification. Set in ms (milliseconds). If the duration is a negative number, the notification will not be removed.
+ * @param {Function} [callback] - This function is executed if the duration is defined and it ends
  */
 function Notify(
   {
