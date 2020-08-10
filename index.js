@@ -1,6 +1,7 @@
 const stylesheet = new CSSStyleSheet();
 const cssText = `#notify {
   position: relative;
+  z-index: 999999;
   display: flex;
   flex-direction: column;
   width: 10vw;
