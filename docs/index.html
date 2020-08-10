@@ -4,55 +4,83 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Notification</title>
-    <style>
-      .buttons {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-      }
-    </style>
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <div class="buttons">
-      <h1>Top</h1>
-      <button
-        onclick="createNotification({position: 'top left',type: 'success'})"
-      >
-        Success
-      </button>
-      <button
-        onclick="createNotification({position: 'top center',type: 'danger'})"
-      >
-        Danger
-      </button>
-      <button
-        onclick="createNotification({position: 'top right',type: 'warning'})"
-      >
-        Warning
-      </button>
-      <h1>Bottom</h1>
-      <button
-        onclick="createNotification({position: 'bottom left',type: 'success'})"
-      >
-        Success
-      </button>
-      <button
-        onclick="createNotification({position: 'bottom center',type: 'danger'})"
-      >
-        Danger
-      </button>
-      <button
-        onclick="createNotification({position: 'bottom right',type: 'warning'})"
-      >
-        Warning
-      </button>
-    </div>
+    <nav>
+      <ul>
+        <li>
+          <iframe
+            src="https://ghbtns.com/github-btn.html?user=buzz-js&repo=buzz-notify&type=star&count=true"
+            frameborder="0"
+            scrolling="0"
+            width="150"
+            height="20"
+            title="GitHub"
+          ></iframe>
+        </li>
+        <li>
+          <a
+            class="twitter-share-button"
+            href="https://twitter.com/intent/tweet"
+          >
+            Tweet</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <main>
+      <section class="buttons">
+        <h1>Top</h1>
+        <button
+          class="btn btn--success"
+          onclick="createNotification({position: 'top left',type: 'success'})"
+        >
+          Success
+        </button>
+        <button
+          class="btn btn--danger"
+          onclick="createNotification({position: 'top center',type: 'danger'})"
+        >
+          Danger
+        </button>
+        <button
+          class="btn btn--warning"
+          onclick="createNotification({position: 'top right',type: 'warning'})"
+        >
+          Warning
+        </button>
+        <h1>Bottom</h1>
+        <button
+          class="btn btn--success"
+          onclick="createNotification({position: 'bottom left',type: 'success'})"
+        >
+          Success
+        </button>
+        <button
+          class="btn btn--danger"
+          onclick="createNotification({position: 'bottom center',type: 'danger'})"
+        >
+          Danger
+        </button>
+        <button
+          class="btn btn--warning"
+          onclick="createNotification({position: 'bottom right',type: 'warning'})"
+        >
+          Warning
+        </button>
+      </section>
+    </main>
 
     <div id="notify"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/@reliutg/buzz-notify/index.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://platform.twitter.com/widgets.js"
+      async
+    ></script>
 
     <script>
       let count = 1;

@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,700");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, sans-serif;
+}
+
+nav,
+main {
+  width: 80%;
+}
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li {
+  display: inline-block;
+}
+
+.buttons {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.btn {
+  color: hsl(0 0% 96%);
+  font-size: 20px;
+  margin: 14px;
+  font-family: inherit;
+  padding: 14px 28px;
+  border: 0;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.15s ease-in-out;
+  box-shadow: 0 4px 6px -1px hsl(0 0% 0% / 0.07),
+    0 2px 4px -1px hsl(0 0% 0% / 0.07);
+}
+
+.btn:active {
+  transform: scale(0.96);
+}
+
+.btn--success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.btn--danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+.btn--warning {
+  color: #856404;
+  background-color: #fff3cd;
+  border-color: #ffeeba;
+}
