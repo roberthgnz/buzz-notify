@@ -5,6 +5,9 @@ Small notifications library
 ### Demo
 [https://buzz-js.github.io/buzz-notify/](https://buzz-js.github.io/buzz-notify/)
 
+### Install
+[https://cdn.jsdelivr.net/npm/@reliutg/buzz-notify/index.min.js](https://cdn.jsdelivr.net/npm/@reliutg/buzz-notify/index.min.js)
+
 ### How to use
 
 In myawesomesite.html:
