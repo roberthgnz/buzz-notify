@@ -1,86 +1,96 @@
-const stylesheet = new CSSStyleSheet();
-const cssText = `#notify {
-  position: relative;
-  z-index: 999999;
-  display: flex;
-  flex-direction: column;
-  width: 10vw;
-}
-[data-notify] {
-  position: fixed;
-}
-[data-notify="top left"] {
-  top: 10px;
-  left: 10px;
-}
-[data-notify="top center"] {
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-[data-notify="top right"] {
-  top: 10px;
-  right: 10px;
-}
-[data-notify="bottom left"] {
-  bottom: 10px;
-  left: 10px;
-}
-[data-notify="bottom center"] {
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-[data-notify="bottom right"] {
-  bottom: 10px;
-  right: 10px;
-}
-[data-notify~="top"] .animate {
-  opacity: 0;
-  margin-top: -10px;
-}
-[data-notify~="bottom"] .animate {
-  opacity: 0;
-  margin-bottom: -10px;
-}
-.notify {
-  padding: 0.25rem 0.75rem;
-  margin-bottom: 1rem;
-  border: 1px solid transparent;
-  border-radius: 0.25rem;
-  transition: all 300ms ease 0s;
-  user-select: none;
-  cursor: pointer;
-}
-.notify__title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row-reverse;
-}
-.notify__title svg {
-  margin-right: 7.5px;
-}
-.notify--success {
-  color: #155724;
-  background-color: #d4edda;
-  border-color: #c3e6cb;
-}
-.notify--danger {
-  color: #721c24;
-  background-color: #f8d7da;
-  border-color: #f5c6cb;
-}
-.notify--warning {
-  color: #856404;
-  background-color: #fff3cd;
-  border-color: #ffeeba;
-}
-`;
+(() => {
+  const cssText = `
+  #notify {
+    position: relative;
+    z-index: 999999;
+    display: flex;
+    flex-direction: column;
+    width: 10vw;
+  }
+  #notify [data-notify] {
+    position: fixed;
+  }
+  #notify [data-notify="top left"] {
+    top: 10px;
+    left: 10px;
+  }
+  #notify [data-notify="top center"] {
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  #notify [data-notify="top right"] {
+    top: 10px;
+    right: 10px;
+  }
+  #notify [data-notify="bottom left"] {
+    bottom: 10px;
+    left: 10px;
+  }
+  #notify [data-notify="bottom center"] {
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  #notify [data-notify="bottom right"] {
+    bottom: 10px;
+    right: 10px;
+  }
+  #notify [data-notify~="top"] .animate {
+    opacity: 0;
+    margin-top: -10px;
+  }
+  #notify [data-notify~="bottom"] .animate {
+    opacity: 0;
+    margin-bottom: -10px;
+  }
+  #notify .notify {
+    padding: 0.25rem 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    transition: all 300ms ease 0s;
+    user-select: none;
+    cursor: pointer;
+  }
+  #notify .notify__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse;
+  }
+  #notify .notify__title svg {
+    margin-right: 7.5px;
+  }
+  #notify .notify--success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+  }
+  #notify .notify--danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+  }
+  #notify .notify--warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+  }
+  `;
 
-stylesheet.replaceSync(cssText);
+  const styleNode = document.createElement("style");
+  styleNode.setAttribute("type", 'text/css');
 
-document.adoptedStyleSheets = [stylesheet];
+  if (!!(window.attachEvent && !window.opera)) {
+    styleNode.styleSheet.cssText = cssText;
+  } else {
+    const styleText = document.createTextNode(cssText);
+    styleNode.appendChild(styleText);
+  }
+
+  document.getElementsByTagName("head")[0].appendChild(styleNode);
+})();
 
 /**
  * Show a notification
@@ -88,7 +98,7 @@ document.adoptedStyleSheets = [stylesheet];
  * @param {String} options.title - Title of the notification
  * @param {DOMString} [options.html] - Sets the HTML markup contained within the notification.
  * @param {String} [options.type] - Can be 'success', 'danger', 'warning'
- * @param {String} [options.position] - Notification position, can be  'top left', 'top right', 'top center', 'center start', 'center', 'center end', 'bottom left', 'bottom center', or 'bottom right'.
+ * @param {String} [options.position] - Notification position, can be  'top left', 'top right', 'top center', 'bottom left', 'bottom center', or 'bottom right'.
  * @param {Number} [options.duration] - Auto close notification. Set in ms (milliseconds). If the duration is a negative number, the notification will not be removed.
  * @param {Function} [callback] - This function is executed if the duration is defined and it ends
  */
@@ -98,7 +108,7 @@ function Notify(
     html = null,
     type = "success",
     position = "top right",
-    duration = 2000,
+    duration = 3000,
   },
   callback
 ) {
