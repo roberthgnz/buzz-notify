@@ -1,8 +1,13 @@
 {
   "name": "@reliutg/buzz-notify",
-  "version": "1.1.1",
+  "type": "module",
+  "version": "1.3.0",
   "description": "",
-  "main": "index.js",
+  "main": "./esm/index.js",
+  "module": "./esm/index.js",
+  "exports": {
+    ".": "./esm/index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -8,6 +8,14 @@ Small notifications library
 ### Install
 [https://cdn.jsdelivr.net/npm/@reliutg/buzz-notify/index.min.js](https://cdn.jsdelivr.net/npm/@reliutg/buzz-notify/index.min.js)
 
+or
+
+````
+<script type="module">
+  import Notify from 'https://cdn.skypack.dev/@reliutg/buzz-notify';
+</script>
+````
+
 ### How to use
 
 In myawesomesite.html:
