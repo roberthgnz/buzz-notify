@@ -10,6 +10,8 @@ Small notifications library
 
 or
 
+### USAGE no npm install needed!
+
 ````
 <script type="module">
   import Notify from 'https://cdn.skypack.dev/@reliutg/buzz-notify';
