@@ -3,7 +3,7 @@
 Small notifications library
 
 ### Demo
-[https://buzz-js.github.io/buzz-notify/](https://buzz-js.github.io/buzz-notify/)
+[https://buzz-notify.vercel.app/](https://buzz-notify.vercel.app)
 
 ### Install
 [https://cdn.jsdelivr.net/npm/@reliutg/buzz-notify/index.min.js](https://cdn.jsdelivr.net/npm/@reliutg/buzz-notify/index.min.js)
