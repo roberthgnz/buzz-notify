@@ -58,6 +58,8 @@
     justify-content: space-between;
     align-items: center;
     flex-direction: row-reverse;
+    font-weight: 700;
+    color: #0b2e13;
   }
   #notify .notify__title svg {
     margin-right: 7.5px;
@@ -80,7 +82,7 @@
   `;
 
   const styleNode = document.createElement("style");
-  styleNode.setAttribute("type", 'text/css');
+  styleNode.setAttribute("type", "text/css");
 
   if (!!(window.attachEvent && !window.opera)) {
     styleNode.styleSheet.cssText = cssText;
@@ -98,7 +100,7 @@
  * @param {String} options.title - Title of the notification
  * @param {DOMString} [options.html] - Sets the HTML markup contained within the notification.
  * @param {String} [options.type] - Can be 'success', 'danger', 'warning'
- * @param {String} [options.position] - Notification position, can be  'top left', 'top right', 'top center', 'bottom left', 'bottom center', or 'bottom right'.
+ * @param {String} [options.position] - Notification position, can be  'top left', 'top center' or 'top right', 'bottom left', 'bottom center' or 'bottom right'.
  * @param {Number} [options.duration] - Auto close notification. Set in ms (milliseconds). If the duration is a negative number, the notification will not be removed.
  * @param {Function} [callback] - This function is executed if the duration is defined and it ends
  */
@@ -130,38 +132,32 @@ function Notify(
   setTimeout(() => notifyContent.classList.remove("animate"), 300);
 
   notifyContent.innerHTML = `
-        <div class="notify__title" style="font-weight: 700;color: #0b2e13;">${title}</div>
-        ${html !== null ? html : ""}
+        <div class="notify__title">${title}</div>
+        ${html ?? ""}
     `;
 
   const notifyTitle = notifyContent.querySelector(".notify__title");
 
-  switch (type) {
-    case "success":
-      notifyTitle.innerHTML += `
-    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#155724" fill="none" stroke-linecap="round" stroke-linejoin="round">
-      <path stroke="none" d="M0 0h24v24H0z"/>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M9 12l2 2l4 -4" />
-    </svg>`;
-      break;
-    case "warning":
-      notifyTitle.innerHTML += `
-      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-alert-circle" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#856404" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <path stroke="none" d="M0 0h24v24H0z"/>
-        <circle cx="12" cy="12" r="9" />
-        <line x1="12" y1="8" x2="12" y2="12" />
-        <line x1="12" y1="16" x2="12.01" y2="16" />
-      </svg>`;
-      break;
-    case "danger":
-      notifyTitle.innerHTML += `
-      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-alert-triangle" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#721c24" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <path stroke="none" d="M0 0h24v24H0z"/>
-        <path d="M12 9v2m0 4v.01" />
-        <path d="M5.07 19H19a2 2 0 0 0 1.75 -2.75L13.75 4a2 2 0 0 0 -3.5 0L3.25 16.25a2 2 0 0 0 1.75 2.75" />
-      </svg>`;
-  }
+  const icons = {
+    success: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#155724" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z"/>
+                <circle cx="12" cy="12" r="9" />
+                <path d="M9 12l2 2l4 -4" />
+              </svg>`,
+    warning: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#856404" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z"/>
+                <circle cx="12" cy="12" r="9" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
+              </svg>`,
+    danger: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#721c24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path stroke="none" d="M0 0h24v24H0z"/>
+              <path d="M12 9v2m0 4v.01" />
+              <path d="M5.07 19H19a2 2 0 0 0 1.75 -2.75L13.75 4a2 2 0 0 0 -3.5 0L3.25 16.25a2 2 0 0 0 1.75 2.75" />
+            </svg>`,
+  };
+
+  notifyTitle.innerHTML += icons[type];
 
   if (position.split(" ")[0] === "top") {
     notifyWrapper.insertAdjacentElement("afterbegin", notifyContent);
@@ -171,8 +167,10 @@ function Notify(
     notifyWrapper.insertAdjacentElement("beforeend", notifyContent);
   }
 
+  // Check if duration is positive
   if (duration * 1 > 0) {
     setTimeout(() => {
+      // if callback it is defined, executed it
       if (typeof callback === "function") callback();
       notifyContent.remove();
     }, duration);

@@ -3,44 +3,50 @@
 Small notifications library
 
 ### Demo
+
 [https://buzz-notify.vercel.app/](https://buzz-notify.vercel.app)
 
 ### Install
+
 [https://cdn.jsdelivr.net/npm/@reliutg/buzz-notify/index.min.js](https://cdn.jsdelivr.net/npm/@reliutg/buzz-notify/index.min.js)
 
 or
 
 ### USAGE no npm install needed!
 
-````html
+```html
 <script type="module">
-  import Notify from 'https://cdn.skypack.dev/@reliutg/buzz-notify';
+  import Notify from "https://cdn.skypack.dev/@reliutg/buzz-notify";
 </script>
-````
+```
 
 ### How to use
 
 In myawesomesite.html:
+
 ```html
 <div id="notify"></div>
 ```
 
 In myscript.js:
+
 ```javascript
-Notify({title: 'My notification'});
+Notify({ title: "My notification" });
 ```
+
 ### Styles
+
 `type` property require a string. Can be `'success', 'danger', 'warning'`
 
 ```javascript
-Notify({title: 'My notification', type: 'success'});
+Notify({ title: "My notification", type: "success" });
 ```
 
 ### Position
 
 `position` property requires a string with 2 keywords for vertical and horizontal postion.
 
-Format: `"<vertical> <horizontal>"`.
+Format: `<vertical> <horizontal>`.
 
 - Vertical options: `top`, `bottom`
 - Horizontal options: `left`, `center`, `right`
@@ -50,27 +56,27 @@ Default is "top right".
 ### API
 
 ```javascript
-  Notify({
-    // (optional)
-    // Can be 'success', 'danger', 'warning'
-    // Overrides default/provided type
-    type: 'success',
-    
-    // (optional)
-    // Notification position
-    // Overrides default/provided duration
-    position: 'top right',
+Notify({
+  // (optional)
+  // Can be 'success', 'danger', 'warning'
+  // Overrides default/provided type
+  type: "success",
 
-    // (optional)
-    // Title
-    title: 'This is title',
+  // (optional)
+  // Notification position
+  // Overrides default/provided duration
+  position: "top right",
 
-    // (optional)
-    // Content
-    html: 'This is <b> content </b>',
+  // (optional)
+  // Title
+  title: "This is title",
 
-    // (optional)
-    // Set in ms (milliseconds) If the duration is a negative number, the notification will not be removed.
-    duration: 2000,
-  })
+  // (optional)
+  // Content
+  html: "This is <b> content </b>",
+
+  // (optional)
+  // Set in ms (milliseconds) If the duration is a negative number, the notification will not be removed.
+  duration: 2000,
+});
 ```
