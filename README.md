@@ -4,7 +4,7 @@ Small notifications library
 
 ### Demo
 
-[https://buzz-notify.vercel.app/](https://buzz-notify.vercel.app)
+[https://buzz-notify-henna.vercel.app/](https://buzz-notify-henna.vercel.app)
 
 ### Install
 
