@@ -180,3 +180,5 @@ function Notify(
     this.remove();
   });
 }
+
+export default Notify
