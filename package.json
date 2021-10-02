@@ -3,17 +3,14 @@
   "type": "module",
   "version": "1.4.1",
   "description": "",
-  "main": "./esm/index.js",
-  "module": "./esm/index.js",
-  "exports": {
-    ".": "./esm/index.js"
-  },
+  "main": "./lib/index.js",
+  "module": "./lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/reliut-g/buzz-notify.git"
+    "url": "git+https://github.com/eliutgon/buzz-notify.git"
   },
   "keywords": [
     "js",
@@ -24,7 +21,10 @@
   "author": "Eliut González",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/reliut-g/buzz-notify/issues"
+    "url": "https://github.com/eliutgon/buzz-notify/issues"
   },
-  "homepage": "https://github.com/reliut-g/buzz-notify#readme"
+  "homepage": "https://github.com/eliutgon/buzz-notify#readme",
+  "devDependencies": {
+    "typescript": "^4.4.3"
+  }
 }
