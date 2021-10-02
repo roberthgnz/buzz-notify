@@ -13,7 +13,7 @@ https://buzz-notify-henna.vercel.app
 ## Install
 
 ### CDN
-https://cdn.jsdelivr.net/npm/@reliutg/buzz-notify@1.5.1/esm/index.min.js
+https://cdn.jsdelivr.net/npm/@reliutg/buzz-notify/index.min.js
 
 or
 
