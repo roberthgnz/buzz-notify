@@ -1,13 +1,18 @@
-# Notify [![GitHub issues](https://img.shields.io/github/issues/reliut-g/buzz-notify)](https://github.com/reliut-g/buzz-notify/issues) [![GitHub forks](https://img.shields.io/github/forks/reliut-g/buzz-notify)](https://github.com/reliut-g/buzz-notify/network) [![GitHub stars](https://img.shields.io/github/stars/reliut-g/buzz-notify)](https://github.com/reliut-g/buzz-notify/stargazers)
+[![](https://data.jsdelivr.com/v1/package/npm/@reliutg/buzz-notify/badge)](https://www.jsdelivr.com/package/npm/@reliutg/buzz-notify)
+
+# Notify [![GitHub issues](https://img.shields.io/github/issues/eliutgon/buzz-notify)](https://github.com/eliutgon/buzz-notify/issues) [![GitHub forks](https://img.shields.io/github/forks/eliutgon/buzz-notify)](https://github.com/eliutgon/buzz-notify/network) [![GitHub stars](https://img.shields.io/github/stars/eliutgon/buzz-notify)](https://github.com/eliutgon/buzz-notify/stargazers)
+
+
 
 Small notifications library
 
-### Demo
+## Demo
 
-[https://buzz-notify-henna.vercel.app/](https://buzz-notify-henna.vercel.app)
+[https://buzz-notify-henna.vercel.app](https://buzz-notify-henna.vercel.app)
 
-### Install
+## Install
 
+### CDN
 [https://cdn.jsdelivr.net/npm/@reliutg/buzz-notify/index.min.js](https://cdn.jsdelivr.net/npm/@reliutg/buzz-notify/index.min.js)
 
 or
