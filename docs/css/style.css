@@ -23,6 +23,9 @@ nav {
 }
 
 nav ul {
+  display: flex;
+  width: 25%;
+  justify-content:space-around;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -30,6 +33,11 @@ nav ul {
 
 nav ul li {
   display: inline-block;
+}
+
+.dark-mode {
+  background-color: #202124;
+  color: white;
 }
 
 .buttons {
