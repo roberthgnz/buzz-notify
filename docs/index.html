@@ -80,32 +80,6 @@
 
     <div id="notify"></div>
 
-    <script type="module">
-      import Notify from "https://cdn.skypack.dev/@reliutg/buzz-notify";
-
-      let count = 1;
-
-      function createNotification({ currentTarget }) {
-        const options = Object.assign({}, currentTarget.dataset);
-        Notify({ ...options, title: `Notification ${count}` });
-        count++;
-      }
-
-      const buttons = document.querySelectorAll(".buttons button");
-
-      Array.from(buttons).forEach((button) =>
-        button.addEventListener("click", createNotification)
-      );
-
-      const darkModeToggle = document.getElementById("dark-mode");
-      const darkModeToggleIcon = darkModeToggle.querySelector("img");
-
-      darkModeToggle.addEventListener("click", function () {
-        document.body.classList.toggle("dark");
-        darkModeToggleIcon.src = document.body.classList.contains("dark")
-          ? "./icons/sun.svg"
-          : "./icons/moon.svg";
-      });
-    </script>
+    <script type="module" src="./js/main.js"></script>
   </body>
 </html>
