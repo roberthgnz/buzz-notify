@@ -14,30 +14,60 @@ body {
 nav,
 main {
   width: 80%;
+  margin: auto;
 }
 
 nav {
   display: flex;
-  justify-content: flex-end;
+  flex-direction: column;
+  justify-content: center;
   padding: 1rem;
+  text-align: center;
 }
 
 nav ul {
+  width: 100%;
   display: flex;
-  width: 25%;
-  justify-content:space-around;
+  justify-content: space-around;
+  align-items: center;
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-nav ul li {
-  display: inline-block;
+@media (min-width: 700px) {
+  nav {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  nav ul {
+    width: 10%;
+  }
 }
 
-.dark-mode {
+nav ul li {
+  display: inline-block;
+  color: #202124;
+}
+
+nav ul li a {
+  color: #202124;
+}
+
+nav ul #dark-mode {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.dark {
   background-color: #202124;
-  color: white;
+  color: #fff;
+}
+
+.dark nav ul li a {
+  color: #fff;
 }
 
 .buttons {
