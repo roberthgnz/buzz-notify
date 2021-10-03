@@ -1,5 +1,3 @@
-import { minimize } from "./utils/css";
-
 /**
  * Define the color of the notifications
  * @defaultvalue "success"
@@ -132,7 +130,7 @@ const icons = {
 
 // Create our shared stylesheet:
 const sheet = new CSSStyleSheet();
-sheet.replaceSync(minimize(cssText));
+sheet.replaceSync(cssText);
 
 // Apply the stylesheet to a document:
 document.adoptedStyleSheets = [sheet];
@@ -153,20 +151,24 @@ function Notify(
     position = "top right",
     duration = 3000,
   }: NotifyOptions,
-  callback: void
+  callback: () => void
 ) {
   if (!notify.querySelector(`[data-notify='${position}']`)) {
     const notifyWrapper = document.createElement("div");
+
     notifyWrapper.setAttribute("data-notify", position);
+    
     notify.appendChild(notifyWrapper);
   }
 
   const notifyWrapper = notify.querySelector(`[data-notify='${position}']`)!;
 
   const notifyContent = document.createElement("div");
+
   notifyContent.setAttribute("class", `notify notify--${type}`);
 
   notifyContent.classList.add("animate");
+
   setTimeout(() => notifyContent.classList.remove("animate"), 300);
 
   notifyContent.innerHTML = `
@@ -189,7 +191,7 @@ function Notify(
   // Check if duration is positive
   if (duration * 1 > 0) {
     setTimeout(() => {
-      // if callback it is defined, executed it
+      // If callback it is defined, executed it
       if (typeof callback === "function") callback();
       notifyContent.remove();
     }, duration);
