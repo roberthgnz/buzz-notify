@@ -1,13 +1,12 @@
 {
   "name": "@reliutg/buzz-notify",
-  "type": "module",
   "version": "1.5.1",
   "description": "",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "build": "rimraf dist && esbuild src/index.ts --bundle --minify --format=esm --outdir=dist --target=chrome80 && tsc --emitDeclarationOnly --outDir dist",
+    "build": "rimraf dist && node esbuild.config.js && tsc --emitDeclarationOnly --outDir dist",
     "watch": "esbuild src/index.ts --bundle --sourcemap --format=esm --outdir=dist --watch",
     "prepublish": "npm run build",
     "version": "git add -A src",
