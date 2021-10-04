@@ -1,6 +1,7 @@
+import "./style.css";
+
 /**
  * Define the color of the notifications
- * @defaultvalue "success"
  */
 type Type = "success" | "warning" | "danger";
 
@@ -17,6 +18,11 @@ type Position =
   | "bottom center"
   | "bottom right";
 
+/**
+ * Define the build-in transition effect
+ */
+type Transition = "fade" | "bounce" | 'slide-blurred';
+
 interface NotifyOptions {
   /**
    * Title of the notification
@@ -28,6 +34,7 @@ interface NotifyOptions {
   html?: string;
   /**
    * Sets the type of the notification.
+   * @defaultvalue "success"
    */
   type?: Type;
   /**
@@ -38,89 +45,12 @@ interface NotifyOptions {
    * Auto close notification. Set in ms (milliseconds). If the duration is a negative number, the notification will not be removed.
    */
   duration?: number;
+  /**
+   * Sets the transition effect.
+   * @defaultvalue "fade"
+   */
+  transition?: Transition;
 }
-
-const cssText = `
-  #notify {
-    position: relative;
-    z-index: 999999;
-    display: flex;
-    flex-direction: column;
-    width: 10vw;
-  }
-  #notify [data-notify] {
-    position: fixed;
-  }
-  #notify [data-notify="top left"] {
-    top: 10px;
-    left: 10px;
-  }
-  #notify [data-notify="top center"] {
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  #notify [data-notify="top right"] {
-    top: 10px;
-    right: 10px;
-  }
-  #notify [data-notify="bottom left"] {
-    bottom: 10px;
-    left: 10px;
-  }
-  #notify [data-notify="bottom center"] {
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  #notify [data-notify="bottom right"] {
-    bottom: 10px;
-    right: 10px;
-  }
-  #notify [data-notify~="top"] .animate {
-    opacity: 0;
-    margin-top: -10px;
-  }
-  #notify [data-notify~="bottom"] .animate {
-    opacity: 0;
-    margin-bottom: -10px;
-  }
-  #notify .notify {
-    padding: 0.25rem 0.75rem;
-    margin-bottom: 1rem;
-    border: 1px solid transparent;
-    border-radius: 0.25rem;
-    transition: all 300ms ease 0s;
-    user-select: none;
-    cursor: pointer;
-  }
-  #notify .notify__title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: row-reverse;
-    font-weight: 700;
-    color: #0b2e13;
-  }
-  #notify .notify__title svg {
-    margin-right: 7.5px;
-  }
-  #notify .notify--success {
-    color: #155724;
-    background-color: #d4edda;
-    border-color: #c3e6cb;
-  }
-  #notify .notify--danger {
-    color: #721c24;
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
-  }
-  #notify .notify--warning {
-    color: #856404;
-    background-color: #fff3cd;
-    border-color: #ffeeba;
-  }
-  `;
 
 const icons = {
   success: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#155724" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9" /><path d="M9 12l2 2l4 -4" /></svg>`,
@@ -128,14 +58,9 @@ const icons = {
   danger: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#721c24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M12 9v2m0 4v.01" /><path d="M5.07 19H19a2 2 0 0 0 1.75 -2.75L13.75 4a2 2 0 0 0 -3.5 0L3.25 16.25a2 2 0 0 0 1.75 2.75" /></svg>`,
 };
 
-// Create our shared stylesheet:
-const sheet = new CSSStyleSheet();
-sheet.replaceSync(cssText);
-
-// Apply the stylesheet to a document:
-document.adoptedStyleSheets = [sheet];
-
 const notify = document.querySelector("#notify")!;
+
+const TRANSITION_DURATION = 400; // ms
 
 /**
  * Show a notification
@@ -150,6 +75,7 @@ function Notify(
     type = "success",
     position = "top right",
     duration = 3000,
+    transition = "slide-blurred"
   }: NotifyOptions,
   callback: () => void
 ) {
@@ -157,7 +83,7 @@ function Notify(
     const notifyWrapper = document.createElement("div");
 
     notifyWrapper.setAttribute("data-notify", position);
-    
+
     notify.appendChild(notifyWrapper);
   }
 
@@ -167,9 +93,11 @@ function Notify(
 
   notifyContent.setAttribute("class", `notify notify--${type}`);
 
-  notifyContent.classList.add("animate");
+  notifyContent.classList.add(`${transition}-active`);
 
-  setTimeout(() => notifyContent.classList.remove("animate"), 300);
+  setTimeout(() => {
+    notifyContent.classList.remove(`${transition}-active`);
+  }, TRANSITION_DURATION);
 
   notifyContent.innerHTML = `
           <div class="notify__title">${title}</div>
@@ -191,6 +119,9 @@ function Notify(
   // Check if duration is positive
   if (duration * 1 > 0) {
     setTimeout(() => {
+      notifyContent.classList.add(`${transition}-leave`);
+    }, duration - TRANSITION_DURATION / 2);
+    setTimeout(() => {
       // If callback it is defined, executed it
       if (typeof callback === "function") callback();
       notifyContent.remove();
@@ -198,7 +129,10 @@ function Notify(
   }
 
   notifyContent.addEventListener("click", function () {
-    this.remove();
+    notifyContent.classList.add(`${transition}-leave`);
+    setTimeout(() => {
+      this.remove();
+    }, TRANSITION_DURATION / 2);
   });
 }
 
