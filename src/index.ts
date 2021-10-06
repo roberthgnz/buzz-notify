@@ -1,5 +1,3 @@
-import "./style.css";
-
 /**
  * Define the color of the notifications
  */
@@ -21,7 +19,7 @@ type Position =
 /**
  * Define the build-in transition effect
  */
-type Transition = "fade" | "bounce" | 'slide-blurred';
+type Transition = "fade" | "bounce" | "slide-blurred";
 
 interface NotifyOptions {
   /**
@@ -73,12 +71,12 @@ function Notify(
     type = "success",
     position = "top right",
     duration = 3000,
-    transition = "slide-blurred"
+    transition = "slide-blurred",
   }: NotifyOptions,
   callback: () => void
 ) {
   const notify = document.querySelector("#notify")!;
-  
+
   if (!notify.querySelector(`[data-notify='${position}']`)) {
     const notifyWrapper = document.createElement("div");
 

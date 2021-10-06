@@ -4,13 +4,13 @@
 
 Small notifications library
 
-## New minor version 1.6.0. Introduces breaking changes!
+## New version. Introduces breaking changes!
 
 Now the styles come separately and you will have to use a new import:
 
 ```js
 import Notify from "@reliutg/buzz-notify";
-import "@reliutg/buzz-notify/dist/index.css";
+import "@reliutg/buzz-notify/dist/buzz-notify.css";
 ```
 
 ## Demo
