@@ -16,7 +16,7 @@ import "@reliutg/buzz-notify/dist/buzz-notify.css";
 
 ## Demo
 
-https://eliutgon.github.io/buzz-notify
+https://buzz-notify-docs.vercel.app
 
 ## Install
 
