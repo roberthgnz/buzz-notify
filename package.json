@@ -10,7 +10,7 @@
     "dist/**/*"
   ],
   "scripts": {
-    "build": "rimraf dist && node ./scripts/build.js && tsc --emitDeclarationOnly --outDir .",
+    "build": "rimraf dist && node ./scripts/build.js",
     "watch": "esbuild src/index.ts --bundle --sourcemap --format=esm --outdir=dist --watch",
     "prepare": "npm run build",
     "version": "git add -A src",
