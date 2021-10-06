@@ -10,7 +10,7 @@ Now the styles come separately and you will have to use a new import:
 
 ```js
 import Notify from "@reliutg/buzz-notify";
-import "@reliutg/buzz-notify/css/index.css";
+import "@reliutg/buzz-notify/dist/index.css";
 ```
 
 ## Demo
