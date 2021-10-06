@@ -1,5 +1,5 @@
 import Notify from "https://cdn.skypack.dev/@reliutg/buzz-notify";
-import "https://cdn.skypack.dev/@reliutg/buzz-notify/css/index.css";
+import "https://cdn.skypack.dev/@reliutg/buzz-notify/dist/index.css";
 
 let count = 1;
 
