@@ -1,25 +1,19 @@
 /**
  * Define the color of the notifications
  */
-type Type = "success" | "warning" | "danger";
+type Type = 'success' | 'warning' | 'danger';
 
 /**
  * Requires a string with 2 keywords for vertical and horizontal postion.
  * @defaultvalue "top right"
  * @see https://github.com/eliutgon/buzz-notify#position
  */
-type Position =
-  | "top left"
-  | "top center"
-  | "top right"
-  | "bottom left"
-  | "bottom center"
-  | "bottom right";
+type Position = 'top left' | 'top center' | 'top right' | 'bottom left' | 'bottom center' | 'bottom right';
 
 /**
  * Define the build-in transition effect
  */
-type Transition = "fade" | "bounce" | "slide-blurred";
+type Transition = 'fade' | 'bounce' | 'slide-blurred';
 
 interface NotifyOptions {
   /**
@@ -65,31 +59,24 @@ const TRANSITION_DURATION = 400; // ms
  * @example Notify({ title: "My notification", type: "success" });
  */
 function Notify(
-  {
-    title,
-    html,
-    type = "success",
-    position = "top right",
-    duration = 3000,
-    transition = "fade",
-  }: NotifyOptions,
-  callback: () => void
+  { title, html, type = 'success', position = 'top right', duration = 3000, transition = 'fade' }: NotifyOptions,
+  callback: () => functiona,
 ) {
-  const notify = document.querySelector("#notify")!;
+  const notify = document.querySelector('#notify')!;
 
   if (!notify.querySelector(`[data-notify='${position}']`)) {
-    const notifyWrapper = document.createElement("div");
+    const notifyWrapper = document.createElement('div');
 
-    notifyWrapper.setAttribute("data-notify", position);
+    notifyWrapper.setAttribute('data-notify', position);
 
     notify.appendChild(notifyWrapper);
   }
 
   const notifyWrapper = notify.querySelector(`[data-notify='${position}']`)!;
 
-  const notifyContent = document.createElement("div");
+  const notifyContent = document.createElement('div');
 
-  notifyContent.setAttribute("class", `notify notify--${type}`);
+  notifyContent.setAttribute('class', `notify notify--${type}`);
 
   notifyContent.classList.add(`${transition}-active`);
 
@@ -99,19 +86,19 @@ function Notify(
 
   notifyContent.innerHTML = `
           <div class="notify__title">${title}</div>
-          ${html ?? ""}
+          ${html ?? ''}
       `;
 
-  const notifyTitle = notifyContent.querySelector(".notify__title")!;
+  const notifyTitle = notifyContent.querySelector('.notify__title')!;
 
   notifyTitle.innerHTML += icons[type];
 
-  if (position.split(" ")[0] === "top") {
-    notifyWrapper.insertAdjacentElement("afterbegin", notifyContent);
+  if (position.split(' ')[0] === 'top') {
+    notifyWrapper.insertAdjacentElement('afterbegin', notifyContent);
   }
 
-  if (position.split(" ")[0] === "bottom") {
-    notifyWrapper.insertAdjacentElement("beforeend", notifyContent);
+  if (position.split(' ')[0] === 'bottom') {
+    notifyWrapper.insertAdjacentElement('beforeend', notifyContent);
   }
 
   // Check if duration is positive
@@ -121,12 +108,12 @@ function Notify(
     }, duration - TRANSITION_DURATION / 2);
     setTimeout(() => {
       // If callback it is defined, executed it
-      if (typeof callback === "function") callback();
+      if (typeof callback === 'function') callback();
       notifyContent.remove();
     }, duration);
   }
 
-  notifyContent.addEventListener("click", function () {
+  notifyContent.addEventListener('click', function () {
     notifyContent.classList.add(`${transition}-leave`);
     setTimeout(() => {
       this.remove();
