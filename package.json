@@ -18,10 +18,8 @@
     "postinstall": "git config core.hooksPath ./git-hooks"
   },
   "lint-staged": {
-    "*": [
-      "prettier --write --ext {.ts} --ignore-unknown"
-    ],
     "src": [
+      "prettier --write",
       "eslint . --fix"
     ]
   },

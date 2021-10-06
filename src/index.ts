@@ -60,7 +60,7 @@ const TRANSITION_DURATION = 400; // ms
  */
 function Notify(
   { title, html, type = 'success', position = 'top right', duration = 3000, transition = 'fade' }: NotifyOptions,
-  callback: () => functiona,
+  callback: () => void,
 ) {
   const notify = document.querySelector('#notify')!;
 
