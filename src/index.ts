@@ -71,7 +71,7 @@ function Notify(
     type = "success",
     position = "top right",
     duration = 3000,
-    transition = "slide-blurred",
+    transition = "fade",
   }: NotifyOptions,
   callback: () => void
 ) {

@@ -4,12 +4,13 @@
   "description": "",
   "main": "./dist/index.js",
   "module": "./dist/esm/index.js",
-  "types": "./dist/index.d.ts",
+  "types": "./index.d.ts",
   "files": [
+    "index.d.ts",
     "dist/**/*"
   ],
   "scripts": {
-    "build": "rimraf dist && node ./scripts/build.js && tsc --emitDeclarationOnly --outDir dist",
+    "build": "rimraf dist && node ./scripts/build.js && tsc --emitDeclarationOnly --outDir .",
     "watch": "esbuild src/index.ts --bundle --sourcemap --format=esm --outdir=dist --watch",
     "prepare": "npm run build",
     "version": "git add -A src",
