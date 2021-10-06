@@ -4,6 +4,14 @@
 :root {
   --bzn-trans-cubic-bezier: cubic-bezier(0.215, 0.61, 0.455, 1);
   --bzn-trans-duration: 0.4s;
+  --bzn-color-success: #155724;
+  --bzn-background-color-success: #d4edda;
+  --bzn-color-danger: #721c24;
+  --bzn-background-color-danger: #f8d7da;
+  --bzn-border-color-danger: #f5c6cb;
+  --bzn-color-warning: #856404;
+  --bzn-background-color-warning: #fff3cd;
+  --bzn-border-color-warning: #ffeeba;
 }
 @keyframes fadeOutTop {
   0% {
@@ -277,17 +285,17 @@
   margin-right: 7.5px;
 }
 #notify .notify--success {
-  color: #155724;
-  background-color: #d4edda;
-  border-color: #c3e6cb;
+  color: var(--bzn-color-success);
+  background-color: var(--bzn-background-color-success);
+  border-color: var(--bzn-color-border-success);
 }
 #notify .notify--danger {
-  color: #721c24;
-  background-color: #f8d7da;
-  border-color: #f5c6cb;
+  color: var(--bzn-color-danger);
+  background-color: var(--bzn-background-color-danger);
+  border-color: var(--bzn-border-color-danger);
 }
 #notify .notify--warning {
-  color: #856404;
-  background-color: #fff3cd;
-  border-color: #ffeeba;
+  color: var(--bzn-color-warning);
+  background-color: var(--bzn-background-color-warning);
+  border-color: var(--bzn-border-color-warning);
 }

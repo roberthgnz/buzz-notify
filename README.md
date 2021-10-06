@@ -2,18 +2,16 @@
 
 # Notify [![GitHub issues](https://img.shields.io/github/issues/eliutgon/buzz-notify)](https://github.com/eliutgon/buzz-notify/issues) [![GitHub forks](https://img.shields.io/github/forks/eliutgon/buzz-notify)](https://github.com/eliutgon/buzz-notify/network) [![GitHub stars](https://img.shields.io/github/stars/eliutgon/buzz-notify)](https://github.com/eliutgon/buzz-notify/stargazers)
 
-
-
 Small notifications library
 
 ## New minor version 1.6.0. Introduces breaking changes!
+
 Now the styles come separately and you will have to use a new import:
 
 ```js
-import Notify from '@reliutg/buzz-notify'
-import '@reliutg/buzz-notify/css/index.css'
+import Notify from "@reliutg/buzz-notify";
+import "@reliutg/buzz-notify/css/index.css";
 ```
-
 
 ## Demo
 
@@ -22,6 +20,7 @@ https://buzz-notify-henna.vercel.app
 ## Install
 
 ### CDN
+
 https://cdn.jsdelivr.net/npm/@reliutg/buzz-notify/index.min.js
 
 or
@@ -54,6 +53,23 @@ Notify({ title: "My notification" });
 
 ```javascript
 Notify({ title: "My notification", type: "success" });
+```
+
+## Customize
+
+```css
+:root {
+  --bzn-trans-cubic-bezier: cubic-bezier(0.215, 0.61, 0.455, 1);
+  --bzn-trans-duration: 0.4s;
+  --bzn-color-success: #155724;
+  --bzn-background-color-success: #d4edda;
+  --bzn-color-danger: #721c24;
+  --bzn-background-color-danger: #f8d7da;
+  --bzn-border-color-danger: #f5c6cb;
+  --bzn-color-warning: #856404;
+  --bzn-background-color-warning: #fff3cd;
+  --bzn-border-color-warning: #ffeeba;
+}
 ```
 
 ### Position
