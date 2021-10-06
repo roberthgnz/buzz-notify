@@ -1,14 +1,15 @@
 [![](https://data.jsdelivr.com/v1/package/npm/@reliutg/buzz-notify/badge)](https://www.jsdelivr.com/package/npm/@reliutg/buzz-notify)
 
-# Notify [![GitHub issues](https://img.shields.io/github/issues/eliutgon/buzz-notify)](https://github.com/eliutgon/buzz-notify/issues) [![GitHub forks](https://img.shields.io/github/forks/eliutgon/buzz-notify)](https://github.com/eliutgon/buzz-notify/network) [![GitHub stars](https://img.shields.io/github/stars/eliutgon/buzz-notify)](https://github.com/eliutgon/buzz-notify/stargazers)
+# BuzzNotify [![GitHub issues](https://img.shields.io/github/issues/eliutgon/buzz-notify)](https://github.com/eliutgon/buzz-notify/issues) [![GitHub forks](https://img.shields.io/github/forks/eliutgon/buzz-notify)](https://github.com/eliutgon/buzz-notify/network) [![GitHub stars](https://img.shields.io/github/stars/eliutgon/buzz-notify)](https://github.com/eliutgon/buzz-notify/stargazers)
 
-Small notifications library
+Small and Clean JavaScript Toast Notifications
 
-## New version. Introduces breaking changes!
+## New version introduces breaking changes!
 
 Now the styles come separately and you will have to use a new import:
 
 ```js
+// >= 1.6.0
 import Notify from "@reliutg/buzz-notify";
 import "@reliutg/buzz-notify/dist/buzz-notify.css";
 ```

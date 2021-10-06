@@ -1,7 +1,7 @@
 {
   "name": "@reliutg/buzz-notify",
   "version": "2.0.1",
-  "description": "",
+  "description": "Small and Clean JavaScript Toast Notifications",
   "main": "./dist/index.js",
   "module": "./dist/esm/index.js",
   "types": "./index.d.ts",
