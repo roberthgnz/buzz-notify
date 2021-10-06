@@ -9,6 +9,9 @@
     ".": "./dist/index.js",
     "./css/index.css": "./dist/index.css"
   },
+  "files": [
+    "dist/**/*"
+  ],
   "scripts": {
     "build": "rimraf dist && node esbuild.config.js && tsc --emitDeclarationOnly --outDir dist",
     "watch": "esbuild src/index.ts --bundle --sourcemap --format=esm --outdir=dist --watch",
