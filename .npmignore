@@ -1,3 +1,6 @@
 src
+git-hooks
+scripts
+.prettierrc
 esbuild.config.js
 tsconfig.json
