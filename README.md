@@ -15,7 +15,7 @@ import "@reliutg/buzz-notify/dist/buzz-notify.css";
 
 ## Demo
 
-https://buzz-notify-henna.vercel.app
+https://eliutgon.github.io/buzz-notify
 
 ## Install
 
