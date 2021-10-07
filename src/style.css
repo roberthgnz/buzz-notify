@@ -266,7 +266,10 @@
   animation: slideOutBlurredBottom var(--bzn-trans-duration);
 }
 #notify .notify {
-  padding: 0.25rem 0.75rem;
+  display: grid;
+  grid-template-areas: var(---area);
+  column-gap: 0.33rem;
+  padding: 0.25rem;
   margin-bottom: 1rem;
   border: 1px solid transparent;
   border-radius: 0.25rem;
@@ -275,14 +278,18 @@
   cursor: pointer;
 }
 #notify .notify__title {
-  display: flex;
-  justify-content: space-between;
+  grid-area: title;
   align-items: center;
-  font-weight: 700;
+  font-weight: 500;
   color: #0b2e13;
 }
 #notify .notify__icon {
-  margin-right: 0.25em;
+  grid-area: icon;
+  align-self: center;
+  justify-self: center;
+}
+#notify .notify__content {
+  grid-area: content;
 }
 #notify .notify--success {
   color: var(--bzn-color-success);

@@ -109,23 +109,26 @@ function Notify(
   notifyContent.setAttribute('aria-live', 'assertive');
   notifyContent.setAttribute('aria-atomic', 'true');
 
+  // Grid style
+  notifyContent.setAttribute('style', `---area: 'icon title'`);
+
   notifyContent.classList.add(`${transition}-active`);
 
   setTimeout(() => {
     notifyContent.classList.remove(`${transition}-active`);
   }, TRANSITION_DURATION);
 
-  notifyContent.innerHTML = `
-          <div class="notify__title">${title}</div>
-          ${html ?? ''}
-      `;
+  notifyContent.innerHTML = `<div class="notify__title">${title}</div>`;
 
-  const notifyTitle = notifyContent.querySelector('.notify__title')!;
+  if (html) {
+    notifyContent.setAttribute('style', `---area: 'icon title' 'icon content'`);
+    notifyContent.innerHTML += `<div class="notify__content">${html}</div>`;
+  }
 
   // If has custom icons
   const _icons = { ...icons, ...config?.icons };
 
-  notifyTitle.insertAdjacentHTML('afterbegin', `<span class="notify__icon">${_icons[type]}</span>`);
+  notifyContent.insertAdjacentHTML('afterbegin', `<span class="notify__icon">${_icons[type]}</span>`);
 
   if (position.split(' ')[0] === 'top') {
     notifyWrapper.insertAdjacentElement('afterbegin', notifyContent);
