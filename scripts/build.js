@@ -3,11 +3,10 @@ const package = require('../package.json');
 
 const commonOptions = {
   entryPoints: ['src/index.ts'],
-  bundle: true,
   minify: true,
   banner: {
     js: `// ${package.author}`,
-    css: `// ${package.author}`,
+    css: `/*${package.author}*/`,
   },
 };
 
