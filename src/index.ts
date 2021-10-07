@@ -15,6 +15,13 @@ type Position = 'top left' | 'top center' | 'top right' | 'bottom left' | 'botto
  */
 type Transition = 'fade' | 'bounce' | 'slide-blurred';
 
+/**
+ * Icon definitions
+ */
+type Icons = {
+  [key in Type]: string;
+};
+
 interface NotifyOptions {
   /**
    * Title of the notification
@@ -42,9 +49,18 @@ interface NotifyOptions {
    * @defaultvalue "fade"
    */
   transition?: Transition;
+  /**
+   * Sets the configuration of the notification.
+   */
+  config?: {
+    /**
+     * Override the default icons.
+     */
+    icons: Icons;
+  } | null;
 }
 
-const icons = {
+const icons: Icons = {
   success: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#155724" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9" /><path d="M9 12l2 2l4 -4" /></svg>`,
   warning: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#856404" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg>`,
   danger: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#721c24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M12 9v2m0 4v.01" /><path d="M5.07 19H19a2 2 0 0 0 1.75 -2.75L13.75 4a2 2 0 0 0 -3.5 0L3.25 16.25a2 2 0 0 0 1.75 2.75" /></svg>`,
@@ -59,7 +75,17 @@ const TRANSITION_DURATION = 400; // ms
  * @example Notify({ title: "My notification", type: "success" });
  */
 function Notify(
-  { title, html, type = 'success', position = 'top right', duration = 3000, transition = 'fade' }: NotifyOptions,
+  {
+    title,
+    html,
+    type = 'success',
+    position = 'top right',
+    duration = 3000,
+    transition = 'fade',
+    config = {
+      icons,
+    },
+  }: NotifyOptions,
   callback: () => void,
 ) {
   const notify = document.querySelector('#notify')!;
@@ -78,6 +104,11 @@ function Notify(
 
   notifyContent.setAttribute('class', `notify notify--${type}`);
 
+  // Accesibility attributes
+  notifyContent.setAttribute('role', 'alert');
+  notifyContent.setAttribute('aria-live', 'assertive');
+  notifyContent.setAttribute('aria-atomic', 'true');
+
   notifyContent.classList.add(`${transition}-active`);
 
   setTimeout(() => {
@@ -91,7 +122,7 @@ function Notify(
 
   const notifyTitle = notifyContent.querySelector('.notify__title')!;
 
-  notifyTitle.innerHTML += icons[type];
+  notifyTitle.innerHTML += config ? config.icons[type] : icons[type];
 
   if (position.split(' ')[0] === 'top') {
     notifyWrapper.insertAdjacentElement('afterbegin', notifyContent);
