@@ -122,7 +122,10 @@ function Notify(
 
   const notifyTitle = notifyContent.querySelector('.notify__title')!;
 
-  notifyTitle.innerHTML += config ? config.icons[type] : icons[type];
+  // If has custom icons
+  const _icons = { ...icons, ...config?.icons };
+
+  notifyTitle.innerHTML += _icons[type];
 
   if (position.split(' ')[0] === 'top') {
     notifyWrapper.insertAdjacentElement('afterbegin', notifyContent);
