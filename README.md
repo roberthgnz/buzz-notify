@@ -1,6 +1,8 @@
 [![](https://data.jsdelivr.com/v1/package/npm/@reliutg/buzz-notify/badge)](https://www.jsdelivr.com/package/npm/@reliutg/buzz-notify)
 
-# BuzzNotify [![GitHub issues](https://img.shields.io/github/issues/eliutgon/buzz-notify)](https://github.com/eliutgon/buzz-notify/issues) [![GitHub forks](https://img.shields.io/github/forks/eliutgon/buzz-notify)](https://github.com/eliutgon/buzz-notify/network) [![GitHub stars](https://img.shields.io/github/stars/eliutgon/buzz-notify)](https://github.com/eliutgon/buzz-notify/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/eliutgon/buzz-notify)](https://github.com/eliutgon/buzz-notify/issues) [![GitHub forks](https://img.shields.io/github/forks/eliutgon/buzz-notify)](https://github.com/eliutgon/buzz-notify/network) [![GitHub stars](https://img.shields.io/github/stars/eliutgon/buzz-notify)](https://github.com/eliutgon/buzz-notify/stargazers)
+
+# BuzzNotify
 
 Small and Clean JavaScript Toast Notifications
 
@@ -10,8 +12,8 @@ Now the styles come separately and you will have to use a new import:
 
 ```js
 // >= 1.6.0
-import Notify from "@reliutg/buzz-notify";
-import "@reliutg/buzz-notify/dist/buzz-notify.css";
+import Notify from '@reliutg/buzz-notify';
+import '@reliutg/buzz-notify/dist/buzz-notify.css';
 ```
 
 ## Demo
@@ -20,43 +22,42 @@ https://buzz-notify-docs.vercel.app
 
 ## Install
 
+```bash
+npm install @reliutg/buzz-notify
+```
+
 ### CDN
 
 https://cdn.jsdelivr.net/npm/@reliutg/buzz-notify/index.min.js
 
 or
 
-### USAGE no npm install needed!
+### Skypack no npm install needed!
 
 ```html
 <script type="module">
-  import Notify from "https://cdn.skypack.dev/@reliutg/buzz-notify";
+  import Notify from 'https://cdn.skypack.dev/@reliutg/buzz-notify';
+  import 'https://cdn.skypack.dev/@reliutg/buzz-notify/dist/buzz-notify.css';
 </script>
 ```
 
-### How to use
+## How to use
 
-In myawesomesite.html:
+In `index.html`:
 
 ```html
 <div id="notify"></div>
 ```
 
-In myscript.js:
+In `index.js`:
 
 ```javascript
-Notify({ title: "My notification" });
+Notify({ title: 'My notification' });
 ```
 
-### Styles
+## Customization
 
-`type` property require a string. Can be `'success', 'danger', 'warning'`
-
-```javascript
-Notify({ title: "My notification", type: "success" });
-```
-
-## Customize
+### Customize the styles
 
 ```css
 :root {
@@ -73,41 +74,58 @@ Notify({ title: "My notification", type: "success" });
 }
 ```
 
-### Position
+### Customize icons
 
-`position` property requires a string with 2 keywords for vertical and horizontal postion.
+```js
+// You can change all or just one type of icon
+// inline svg and emojis are supported :)
+const myIcons = {
+  success: '🎉',
+  danger: '💣',
+  warning: '⚠️',
+};
 
-Format: `<vertical> <horizontal>`.
+Notify({ title: 'My notification', type: 'success', config: { icons: myIcons } });
+```
 
-- Vertical options: `top`, `bottom`
-- Horizontal options: `left`, `center`, `right`
-
-Default is "top right".
-
-### API
+## Options
 
 ```javascript
 Notify({
-  // (optional)
-  // Can be 'success', 'danger', 'warning'
-  // Overrides default/provided type
-  type: "success",
-
-  // (optional)
-  // Notification position
-  // Overrides default/provided duration
-  position: "top right",
-
-  // (optional)
-  // Title
-  title: "This is title",
-
-  // (optional)
-  // Content
-  html: "This is <b> content </b>",
-
-  // (optional)
-  // Set in ms (milliseconds) If the duration is a negative number, the notification will not be removed.
-  duration: 2000,
+  /**
+   * Title of the notification
+   */
+  title: string;
+  /**
+   * Sets the HTML markup contained within the notification.
+   */
+  html?: string;
+  /**
+   * Sets the type of the notification.
+   * @defaultvalue "success"
+   */
+  type?: Type;
+  /**
+   * Sets the position of the notification.
+   */
+  position?: Position;
+  /**
+   * Auto close notification. Set in ms (milliseconds). If the duration is a negative number, the notification will not be removed.
+   */
+  duration?: number;
+  /**
+   * Sets the transition effect.
+   * @defaultvalue "fade"
+   */
+  transition?: Transition;
+  /**
+   * Sets the configuration of the notification.
+   */
+  config?: {
+    /**
+     * Override the default icons.
+     */
+    icons: Icons;
+  } | null;
 });
 ```
