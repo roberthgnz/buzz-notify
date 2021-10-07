@@ -15,6 +15,7 @@ esbuild.buildSync({
   bundle: true,
   minify: true,
   format: "iife",
+  globalName: "Notify",
   outdir: "dist",
 });
 
