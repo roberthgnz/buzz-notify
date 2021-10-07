@@ -1,27 +1,35 @@
-const esbuild = require("esbuild");
+const esbuild = require('esbuild');
+const package = require('../package.json');
+
+const commonOptions = {
+  entryPoints: ['src/index.ts'],
+  bundle: true,
+  minify: true,
+  banner: {
+    js: `// ${package.author}`,
+    css: `// ${package.author}`,
+  },
+};
 
 // ECMAScript Module
 esbuild.buildSync({
-  entryPoints: ["src/index.ts"],
-  bundle: true,
-  minify: true,
-  format: "esm",
-  outdir: "dist/esm",
+  ...commonOptions,
+  format: 'esm',
+  outdir: 'dist/esm',
 });
 
 // IIFE
 esbuild.buildSync({
-  entryPoints: ["src/index.ts"],
-  bundle: true,
-  minify: true,
-  format: "iife",
-  globalName: "Notify",
-  outdir: "dist",
+  ...commonOptions,
+  format: 'iife',
+  platform: 'browser',
+  globalName: 'Notify',
+  outdir: 'dist',
 });
 
 // CSS
 esbuild.buildSync({
-  entryPoints: ["src/style.css"],
-  minify: true,
-  outfile: "dist/buzz-notify.css",
+  ...commonOptions,
+  entryPoints: ['src/style.css'],
+  outfile: 'dist/buzz-notify.css',
 });
