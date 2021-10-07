@@ -75,6 +75,7 @@ Notify({ title: 'My notification' });
   --bzn-trans-duration: 0.4s;
   --bzn-color-success: #155724;
   --bzn-background-color-success: #d4edda;
+  --bzn-border-color-success: #c3e6cb;
   --bzn-color-danger: #721c24;
   --bzn-background-color-danger: #f8d7da;
   --bzn-border-color-danger: #f5c6cb;
