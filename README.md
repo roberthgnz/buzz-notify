@@ -28,7 +28,17 @@ npm install @reliutg/buzz-notify
 
 ### CDN
 
-https://cdn.jsdelivr.net/npm/@reliutg/buzz-notify/index.min.js
+```html
+<link rel="stylesheet" href="https://unpkg.com/@reliutg/buzz-notify/dist/buzz-notify.css" />
+<script src="https://unpkg.com/@reliutg/buzz-notify"></script>
+```
+
+### ES6 Modules
+
+```js
+import Notify from '@reliutg/buzz-notify';
+import '@reliutg/buzz-notify/dist/buzz-notify.css';
+```
 
 or
 
