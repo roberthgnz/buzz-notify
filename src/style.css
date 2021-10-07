@@ -287,7 +287,7 @@
 #notify .notify--success {
   color: var(--bzn-color-success);
   background-color: var(--bzn-background-color-success);
-  border-color: var(--bzn-color-border-success);
+  border-color: var(--bzn-border-color-success);
 }
 #notify .notify--danger {
   color: var(--bzn-color-danger);
