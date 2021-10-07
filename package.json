@@ -12,6 +12,7 @@
   "scripts": {
     "build": "rimraf dist && node ./scripts/build.js",
     "watch": "esbuild src/index.ts --bundle --sourcemap --format=esm --outdir=dist --watch",
+    "declaration": "tsc src/index.ts --declaration --emitDeclarationOnly --declarationDir .",
     "prepare": "npm run build",
     "version": "git add -A src",
     "postversion": "git push && git push --tags",
