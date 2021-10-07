@@ -125,7 +125,7 @@ function Notify(
   // If has custom icons
   const _icons = { ...icons, ...config?.icons };
 
-  notifyTitle.innerHTML += _icons[type];
+  notifyTitle.insertAdjacentHTML('afterbegin', `<span class="notify__icon">${_icons[type]}</span>`);
 
   if (position.split(' ')[0] === 'top') {
     notifyWrapper.insertAdjacentElement('afterbegin', notifyContent);
