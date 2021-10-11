@@ -279,7 +279,7 @@
 }
 #notify .notify__title {
   grid-area: title;
-  align-items: center;
+  align-self: center;
   font-weight: 500;
   color: #0b2e13;
 }
