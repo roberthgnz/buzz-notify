@@ -138,3 +138,6 @@ Notify({
   } | null;
 });
 ```
+
+### Based on 
+https://github.com/euvl/vue-notification
