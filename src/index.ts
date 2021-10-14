@@ -1,14 +1,17 @@
 /**
  * Define the color of the notifications
  */
-type Type = 'success' | 'warning' | 'danger';
+type NotificationVariant = 'success' | 'warning' | 'danger';
 
 /**
  * Requires a string with 2 keywords for vertical and horizontal postion.
  * @defaultvalue "top right"
  * @see https://github.com/eliutgon/buzz-notify#position
  */
-type Position = 'top left' | 'top center' | 'top right' | 'bottom left' | 'bottom center' | 'bottom right';
+type Position = {
+  vertical: 'top' | 'bottom';
+  horizontal: 'left' | 'center' | 'right';
+}
 
 /**
  * Define the build-in transition effect
@@ -18,35 +21,9 @@ type Transition = 'fade' | 'bounce' | 'slide-blurred';
 /**
  * Icon definitions
  */
-type Icons = Record<Type, string>;
+type Icons = Record<NotificationVariant, string>;
 
-interface NotifyOptions {
-  /**
-   * Title of the notification
-   */
-  title: string;
-  /**
-   * Sets the HTML markup contained within the notification.
-   */
-  html?: string;
-  /**
-   * Sets the type of the notification.
-   * @defaultvalue "success"
-   */
-  type?: Type;
-  /**
-   * Sets the position of the notification.
-   */
-  position?: Position;
-  /**
-   * Auto close notification. Set in ms (milliseconds). If the duration is a negative number, the notification will not be removed.
-   */
-  duration?: number;
-  /**
-   * Sets the transition effect.
-   * @defaultvalue "fade"
-   */
-  transition?: Transition;
+type NotifyProps = {
   /**
    * Sets the configuration of the notification.
    */
@@ -56,6 +33,36 @@ interface NotifyOptions {
      */
     icons: Icons;
   } | null;
+  /**
+   * Auto close notification. Set in ms (milliseconds). If the duration is a negative number, the notification will not be removed.
+   */
+  duration?: number;
+  /**
+   * Sets the HTML markup contained within the notification.
+   */
+  html?: string;
+  /**
+   * Callback that fires, when the notification removes
+   * */
+  onClose?: () => void;
+  /**
+   * Sets the position of the notification.
+   */
+  position?: Position;
+  /**
+   * Title of the notification
+   */
+  title: string;
+  /**
+   * Sets the transition effect.
+   * @defaultvalue "fade"
+   */
+  transition?: Transition;
+  /**
+   * Sets the type of the notification.
+   * @defaultvalue "success"
+   */
+  variant?: NotificationVariant;
 }
 
 const icons: Icons = {
@@ -67,50 +74,48 @@ const icons: Icons = {
     '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#721c24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M12 9v2m0 4v.01" /><path d="M5.07 19H19a2 2 0 0 0 1.75 -2.75L13.75 4a2 2 0 0 0 -3.5 0L3.25 16.25a2 2 0 0 0 1.75 2.75" /></svg>'
 }
 
-const TRANSITION_DURATION = 400
+const TRANSITION_DURATION = 0.4
 
 /**
  * Show a notification
- * @param {NotifyOptions} options - Options for the notification
- * @param {Function} callback - Callback function executed when the notification is closed.
- * @example Notify({ title: "My notification", type: "success" });
+ * @param {NotifyProps} - notification props
+ * @example Notify({ title: "My notification" });
  */
-function Notify (
+export const Notify = (
   {
-    title,
-    html,
-    type = 'success',
-    position = 'top right',
-    duration = 3000,
-    transition = 'fade',
     config = {
       icons
-    }
-  }: NotifyOptions,
-  callback: () => void
-) {
+    },
+    duration = 3,
+    html,
+    onClose,
+    position: { vertical, horizontal } = { vertical: 'top', horizontal: 'right' },
+    title,
+    transition = 'fade',
+    variant = 'success'
+  }: NotifyProps
+) => {
   const notify = document.querySelector('#notify')!
+  const dataNotifyAttribute = [vertical, horizontal].join('-')
 
-  if (!notify.querySelector(`[data-notify='${position}']`)) {
+  if (!notify.querySelector(`[data-notify='${dataNotifyAttribute}']`)) {
     const notifyWrapper = document.createElement('div')
 
-    notifyWrapper.setAttribute('data-notify', position)
+    notifyWrapper.setAttribute('data-notify', dataNotifyAttribute)
 
     notify.appendChild(notifyWrapper)
   }
 
-  const notifyWrapper = notify.querySelector(`[data-notify='${position}']`)!
+  const notifyWrapper = notify.querySelector(`[data-notify='${dataNotifyAttribute}']`)!
 
   const notifyContent = document.createElement('div')
 
-  notifyContent.setAttribute('class', `notify notify--${type}`)
+  notifyContent.setAttribute('class', `notify notify--${variant}`)
 
-  // Accesibility attributes
   notifyContent.setAttribute('role', 'alert')
   notifyContent.setAttribute('aria-live', 'assertive')
   notifyContent.setAttribute('aria-atomic', 'true')
 
-  // Grid style
   notifyContent.setAttribute('style', "---area: 'icon title'")
 
   notifyContent.classList.add(`${transition}-active`)
@@ -130,39 +135,30 @@ function Notify (
   // If has custom icons
   const _icons = { ...icons, ...config?.icons }
 
-  notifyContent.insertAdjacentHTML('afterbegin', `<span class="notify__icon">${_icons[type]}</span>`)
+  notifyContent.insertAdjacentHTML('afterbegin', `<span class="notify__icon">${_icons[variant]}</span>`)
 
-  if (position.split(' ')[0] === 'top') {
+  if (vertical === 'top') {
     notifyWrapper.insertAdjacentElement('afterbegin', notifyContent)
-  }
-
-  if (position.split(' ')[0] === 'bottom') {
+  } else {
     notifyWrapper.insertAdjacentElement('beforeend', notifyContent)
   }
 
-  // Check if duration is positive
-  if (duration * 1 > 0) {
+  if (duration > 0) {
     setTimeout(() => {
       notifyContent.classList.add(`${transition}-leave`)
     }, duration - TRANSITION_DURATION / 2)
 
     setTimeout(() => {
-      // If callback exists - execute it
-      if (typeof callback === 'function') {
-        callback()
-      }
-
+      onClose && onClose()
       notifyContent.remove()
-    }, duration)
+    }, Number(`${duration}000`))
   }
 
   notifyContent.addEventListener('click', function () {
     notifyContent.classList.add(`${transition}-leave`)
 
     setTimeout(() => {
-      this.remove()
+      notifyContent.remove()
     }, TRANSITION_DURATION / 2)
   })
 }
-
-export default Notify
