@@ -15,9 +15,7 @@ declare type Transition = 'fade' | 'bounce' | 'slide-blurred';
 /**
  * Icon definitions
  */
-declare type Icons = {
-    [key in Type]: string;
-};
+declare type Icons = Record<Type, string>;
 interface NotifyOptions {
     /**
      * Title of the notification
@@ -61,5 +59,5 @@ interface NotifyOptions {
  * @param {Function} callback - Callback function executed when the notification is closed.
  * @example Notify({ title: "My notification", type: "success" });
  */
-declare function Notify({ title, html, type, position, duration, transition, config, }: NotifyOptions, callback: () => void): void;
-export default Notify;
+declare function Notify({ title, html, type, position, duration, transition, config }: NotifyOptions, callback: () => void): void;
+export default Notify
