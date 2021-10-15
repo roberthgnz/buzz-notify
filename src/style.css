@@ -266,6 +266,7 @@
   animation: slideOutBlurredBottom var(--bzn-trans-duration);
 }
 #notify .notify {
+  box-sizing: border-box;
   display: grid;
   grid-template-areas: var(---area);
   column-gap: 0.33rem;
@@ -284,6 +285,7 @@
   color: #0b2e13;
 }
 #notify .notify__icon {
+  display: flex;
   grid-area: icon;
   align-self: center;
   justify-self: center;
