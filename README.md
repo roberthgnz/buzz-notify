@@ -95,7 +95,7 @@ Notify({ title: 'My notification', position: 'bottom center' });
 
 Execute a callback function when the toast message is dismissed.
 
-````javascript
+```javascript
 Notify({ title: 'My notification' }, () => {
   console.log('Notification closed');
 });
