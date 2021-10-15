@@ -23,7 +23,7 @@ import '@reliutg/buzz-notify/dist/buzz-notify.css';
 ## Features
 
 ✨ Beautiful and easy to use
-✨ Lightweight
+😊 Lightweight
 ❤️ Strongly typed
 
 ## Demo
