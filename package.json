@@ -10,10 +10,11 @@
     "dist/**/*"
   ],
   "scripts": {
-    "build": "rimraf dist && node ./scripts/build.js && npm run declaration",
+    "build": "rimraf dist && node ./scripts/build.js",
     "declaration": "tsc src/index.ts --declaration --emitDeclarationOnly --declarationDir .",
     "prepare": "npm run build",
     "version": "git add -A src",
+    "prepublish": "npm run declaration",
     "postversion": "git push && git push --tags",
     "postinstall": "git config core.hooksPath ./git-hooks"
   },

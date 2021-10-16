@@ -7,7 +7,7 @@ declare type Type = 'success' | 'warning' | 'danger';
  * @defaultvalue "top right"
  * @see https://github.com/eliutgon/buzz-notify#position
  */
-declare type Position = 'top left' | 'top center' | 'top right' | 'bottom left' | 'bottom center' | 'bottom right';
+declare type Position = 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';
 /**
  * Define the build-in transition effect
  */
@@ -32,10 +32,12 @@ interface NotifyOptions {
     type?: Type;
     /**
      * Sets the position of the notification.
+     * @defaultvalue "top-right"
      */
     position?: Position;
     /**
      * Auto close notification. Set in ms (milliseconds). If the duration is a negative number, the notification will not be removed.
+     * @defaultvalue 3000
      */
     duration?: number;
     /**
@@ -59,5 +61,5 @@ interface NotifyOptions {
  * @param {Function} callback - Callback function executed when the notification is closed.
  * @example Notify({ title: "My notification", type: "success" });
  */
-declare function Notify({ title, html, type, position, duration, transition, config }: NotifyOptions, callback: () => void): void;
-export default Notify
+export declare const Notify: ({ title, html, type, position, duration, transition, config, }: NotifyOptions, callback: () => void) => void;
+export {};
