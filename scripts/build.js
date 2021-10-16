@@ -1,5 +1,6 @@
 const esbuild = require('esbuild');
 const package = require('../package.json');
+const fs = require('fs');
 
 const commonOptions = {
   entryPoints: ['src/index.ts'],
@@ -18,13 +19,11 @@ esbuild.buildSync({
 });
 
 // IIFE
-esbuild.buildSync({
-  ...commonOptions,
-  format: 'iife',
-  platform: 'browser',
-  globalName: 'Notify',
-  outdir: 'dist',
-});
+// Read dist/esm/index.js
+const esm = fs.readFileSync('dist/esm/index.js', 'utf8').replace(/}\)};export{u as Notify};/g, '})};return u;');
+
+// Write dist/index.js
+fs.writeFileSync('dist/index.js', `var Notify = (() => {${esm}})();`);
 
 // CSS
 esbuild.buildSync({
