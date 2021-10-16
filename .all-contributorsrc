@@ -1,0 +1,25 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "Krausso",
+      "name": "krau5",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52201020?v=4",
+      "profile": "http://cutt.ly/dmxCq0G",
+      "contributions": [
+        "code",
+        "maintenance"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "buzz-notify",
+  "projectOwner": "eliutgon",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}

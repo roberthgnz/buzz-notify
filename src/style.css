@@ -292,6 +292,7 @@
 }
 
 #notify .notify {
+  box-sizing: border-box;
   display: grid;
   grid-template-areas: var(---area);
   column-gap: 0.33rem;
@@ -312,6 +313,7 @@
 }
 
 #notify .notify__icon {
+  display: flex;
   grid-area: icon;
   align-self: center;
   justify-self: center;
