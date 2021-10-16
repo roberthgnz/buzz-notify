@@ -20,7 +20,7 @@ esbuild.buildSync({
 
 // IIFE
 // Read dist/esm/index.js
-const esm = fs.readFileSync('dist/esm/index.js', 'utf8').replace(/}\)};export{u as Notify};/g, '})};return u;');
+const esm = fs.readFileSync('dist/esm/index.js', 'utf8').replace(/}\)};export{([a-z]) as Notify};/g, '})};return $1;');
 
 // Write dist/index.js
 fs.writeFileSync('dist/index.js', `var Notify = (() => {${esm}})();`);
