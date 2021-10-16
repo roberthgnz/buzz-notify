@@ -16,7 +16,7 @@ Now the styles come separately and you will have to use a new import:
 
 ```js
 // >= 1.6.0
-import Notify from '@reliutg/buzz-notify';
+import { Notify } from '@reliutg/buzz-notify';
 import '@reliutg/buzz-notify/dist/buzz-notify.css';
 ```
 
@@ -46,7 +46,7 @@ npm install @reliutg/buzz-notify
 ### ES6 Modules
 
 ```js
-import Notify from '@reliutg/buzz-notify';
+import { Notify } from '@reliutg/buzz-notify';
 import '@reliutg/buzz-notify/dist/buzz-notify.css';
 ```
 
@@ -56,7 +56,7 @@ or
 
 ```html
 <script type="module">
-  import Notify from 'https://cdn.skypack.dev/@reliutg/buzz-notify';
+  import { Notify } from 'https://cdn.skypack.dev/@reliutg/buzz-notify';
   import 'https://cdn.skypack.dev/@reliutg/buzz-notify/dist/buzz-notify.css';
 </script>
 ```
@@ -127,7 +127,7 @@ Notify({ title: 'My notification' }, () => {
   --bzn-background-color-warning: #fff3cd;
   --bzn-border-color-warning: #ffeeba;
 }
-````
+```
 
 ### Customize icons
 
