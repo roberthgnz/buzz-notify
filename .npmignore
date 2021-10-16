@@ -1,6 +1,7 @@
 src
 git-hooks
 scripts
+.all-contributorsrc
 .prettierrc
 .eslintrc.js
 commitlint.config.js
