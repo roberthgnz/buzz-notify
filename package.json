@@ -10,7 +10,7 @@
     "dist/**/*"
   ],
   "scripts": {
-    "build": "rimraf dist && node ./scripts/build.js",
+    "build": "rimraf dist && node ./scripts/build.js && npm run declaration",
     "declaration": "tsc src/index.ts --declaration --emitDeclarationOnly --declarationDir .",
     "prepare": "npm run build",
     "version": "git add -A src",
