@@ -8,7 +8,7 @@ type Type = 'success' | 'warning' | 'danger';
  * @defaultvalue "top right"
  * @see https://github.com/eliutgon/buzz-notify#position
  */
-type Position = 'top left' | 'top center' | 'top right' | 'bottom left' | 'bottom center' | 'bottom right';
+type Position = 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';
 
 /**
  * Define the build-in transition effect
@@ -36,10 +36,12 @@ interface NotifyOptions {
   type?: Type;
   /**
    * Sets the position of the notification.
+   * @defaultvalue "top-right"
    */
   position?: Position;
   /**
    * Auto close notification. Set in ms (milliseconds). If the duration is a negative number, the notification will not be removed.
+   * @defaultvalue 3000
    */
   duration?: number;
   /**
@@ -80,7 +82,7 @@ export const Notify = (
     title,
     html,
     type = 'success',
-    position = 'top right',
+    position = 'top-right',
     duration = 3000,
     transition = 'fade',
     config = {
@@ -132,11 +134,13 @@ export const Notify = (
 
   notifyContent.insertAdjacentHTML('afterbegin', `<span class="notify__icon">${_icons[type]}</span>`);
 
-  if (position.split(' ')[0] === 'top') {
+  const [vertical] = position.split('-');
+
+  if (vertical === 'top') {
     notifyWrapper.insertAdjacentElement('afterbegin', notifyContent);
   }
 
-  if (position.split(' ')[0] === 'bottom') {
+  if (vertical === 'bottom') {
     notifyWrapper.insertAdjacentElement('beforeend', notifyContent);
   }
 
