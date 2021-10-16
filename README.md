@@ -87,10 +87,10 @@ Determine the timeout in milliseconds. Default: 3000ms. If the duration is a neg
 Notify({ title: 'My notification', duration: 5000 });
 ```
 
-Change the position of the toast message. Can be ‘top left’, ‘top right’, ‘top center’, ‘center start’, ‘center’, ‘center end’, ‘bottom left’, ‘bottom center’, or ‘bottom right’. Default: ‘top right’.
+Change the position of the toast message. Can be ‘top-left’, ‘top-right’, ‘top-center’, ‘bottom-left’, ‘bottom-center’, or ‘bottom-right’. Default: ‘top-right’.
 
 ```javascript
-Notify({ title: 'My notification', position: 'bottom center' });
+Notify({ title: 'My notification', position: 'bottom-center' });
 ```
 
 Execute a callback function when the toast message is dismissed.
@@ -162,10 +162,12 @@ Notify({
   type?: Type;
   /**
    * Sets the position of the notification.
+   * @defaultvalue "top-right"
    */
   position?: Position;
   /**
    * Auto close notification. Set in ms (milliseconds). If the duration is a negative number, the notification will not be removed.
+   * @defaultvalue 3000
    */
   duration?: number;
   /**
