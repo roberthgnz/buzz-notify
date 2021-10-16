@@ -64,10 +64,10 @@ const icons: Icons = {
   warning:
     '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#856404" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg>',
   danger:
-    '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#721c24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M12 9v2m0 4v.01" /><path d="M5.07 19H19a2 2 0 0 0 1.75 -2.75L13.75 4a2 2 0 0 0 -3.5 0L3.25 16.25a2 2 0 0 0 1.75 2.75" /></svg>'
-}
+    '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#721c24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M12 9v2m0 4v.01" /><path d="M5.07 19H19a2 2 0 0 0 1.75 -2.75L13.75 4a2 2 0 0 0 -3.5 0L3.25 16.25a2 2 0 0 0 1.75 2.75" /></svg>',
+};
 
-const TRANSITION_DURATION = 400
+const TRANSITION_DURATION = 400;
 
 /**
  * Show a notification
@@ -75,7 +75,7 @@ const TRANSITION_DURATION = 400
  * @param {Function} callback - Callback function executed when the notification is closed.
  * @example Notify({ title: "My notification", type: "success" });
  */
-function Notify (
+export const Notify = (
   {
     title,
     html,
@@ -84,85 +84,83 @@ function Notify (
     duration = 3000,
     transition = 'fade',
     config = {
-      icons
-    }
+      icons,
+    },
   }: NotifyOptions,
-  callback: () => void
-) {
-  const notify = document.querySelector('#notify')!
+  callback: () => void,
+) => {
+  const notify = document.querySelector('#notify')!;
 
   if (!notify.querySelector(`[data-notify='${position}']`)) {
-    const notifyWrapper = document.createElement('div')
+    const notifyWrapper = document.createElement('div');
 
-    notifyWrapper.setAttribute('data-notify', position)
+    notifyWrapper.setAttribute('data-notify', position);
 
-    notify.appendChild(notifyWrapper)
+    notify.appendChild(notifyWrapper);
   }
 
-  const notifyWrapper = notify.querySelector(`[data-notify='${position}']`)!
+  const notifyWrapper = notify.querySelector(`[data-notify='${position}']`)!;
 
-  const notifyContent = document.createElement('div')
+  const notifyContent = document.createElement('div');
 
-  notifyContent.setAttribute('class', `notify notify--${type}`)
+  notifyContent.setAttribute('class', `notify notify--${type}`);
 
   // Accesibility attributes
-  notifyContent.setAttribute('role', 'alert')
-  notifyContent.setAttribute('aria-live', 'assertive')
-  notifyContent.setAttribute('aria-atomic', 'true')
+  notifyContent.setAttribute('role', 'alert');
+  notifyContent.setAttribute('aria-live', 'assertive');
+  notifyContent.setAttribute('aria-atomic', 'true');
 
   // Grid style
-  notifyContent.setAttribute('style', "---area: 'icon title'")
+  notifyContent.setAttribute('style', "---area: 'icon title'");
 
-  notifyContent.classList.add(`${transition}-active`)
-  notifyContent.classList.add(`${transition}-active`)
+  notifyContent.classList.add(`${transition}-active`);
+  notifyContent.classList.add(`${transition}-active`);
 
   setTimeout(() => {
-    notifyContent.classList.remove(`${transition}-active`)
-  }, TRANSITION_DURATION)
+    notifyContent.classList.remove(`${transition}-active`);
+  }, TRANSITION_DURATION);
 
-  notifyContent.innerHTML = `<div class="notify__title">${title}</div>`
+  notifyContent.innerHTML = `<div class="notify__title">${title}</div>`;
 
   if (html) {
-    notifyContent.setAttribute('style', "---area: 'icon title' 'icon content'")
-    notifyContent.innerHTML += `<div class="notify__content">${html}</div>`
+    notifyContent.setAttribute('style', "---area: 'icon title' 'icon content'");
+    notifyContent.innerHTML += `<div class="notify__content">${html}</div>`;
   }
 
   // If has custom icons
-  const _icons = { ...icons, ...config?.icons }
+  const _icons = { ...icons, ...config?.icons };
 
-  notifyContent.insertAdjacentHTML('afterbegin', `<span class="notify__icon">${_icons[type]}</span>`)
+  notifyContent.insertAdjacentHTML('afterbegin', `<span class="notify__icon">${_icons[type]}</span>`);
 
   if (position.split(' ')[0] === 'top') {
-    notifyWrapper.insertAdjacentElement('afterbegin', notifyContent)
+    notifyWrapper.insertAdjacentElement('afterbegin', notifyContent);
   }
 
   if (position.split(' ')[0] === 'bottom') {
-    notifyWrapper.insertAdjacentElement('beforeend', notifyContent)
+    notifyWrapper.insertAdjacentElement('beforeend', notifyContent);
   }
 
   // Check if duration is positive
   if (duration * 1 > 0) {
     setTimeout(() => {
-      notifyContent.classList.add(`${transition}-leave`)
-    }, duration - TRANSITION_DURATION / 2)
+      notifyContent.classList.add(`${transition}-leave`);
+    }, duration - TRANSITION_DURATION / 2);
 
     setTimeout(() => {
       // If callback exists - execute it
       if (typeof callback === 'function') {
-        callback()
+        callback();
       }
 
-      notifyContent.remove()
-    }, duration)
+      notifyContent.remove();
+    }, duration);
   }
 
   notifyContent.addEventListener('click', function () {
-    notifyContent.classList.add(`${transition}-leave`)
+    notifyContent.classList.add(`${transition}-leave`);
 
     setTimeout(() => {
-      this.remove()
-    }, TRANSITION_DURATION / 2)
-  })
-}
-
-export default Notify
+      this.remove();
+    }, TRANSITION_DURATION / 2);
+  });
+};
