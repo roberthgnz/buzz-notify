@@ -13,8 +13,7 @@
     "build": "rimraf dist && node ./scripts/build.js",
     "declaration": "tsc src/index.ts --declaration --emitDeclarationOnly --declarationDir .",
     "prepare": "npm run build",
-    "version": "git add -A src",
-    "prepublish": "npm run declaration",
+    "version": "npm run declaration && git add -A src",
     "postversion": "git push && git push --tags",
     "postinstall": "git config core.hooksPath ./git-hooks"
   },
