@@ -203,29 +203,29 @@
 #notify [data-notify] {
   position: fixed;
 }
-#notify [data-notify='top left'] {
+#notify [data-notify='top-left'] {
   top: 10px;
   left: 10px;
 }
-#notify [data-notify='top center'] {
+#notify [data-notify='top-center'] {
   top: 10px;
   left: 50%;
   transform: translateX(-50%);
 }
-#notify [data-notify='top right'] {
+#notify [data-notify='top-right'] {
   top: 10px;
   right: 10px;
 }
-#notify [data-notify='bottom left'] {
+#notify [data-notify='bottom-left'] {
   bottom: 10px;
   left: 10px;
 }
-#notify [data-notify='bottom center'] {
+#notify [data-notify='bottom-center'] {
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
 }
-#notify [data-notify='bottom right'] {
+#notify [data-notify='bottom-right'] {
   bottom: 10px;
   right: 10px;
 }
