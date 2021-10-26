@@ -157,6 +157,7 @@ export const Notify = (
         callback()
       }
 
+      notifyContent.dispatchEvent(NotifyEvent)
       notifyContent.remove()
     }, duration)
   }
