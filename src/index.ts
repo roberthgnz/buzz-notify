@@ -1,54 +1,54 @@
 /**
  * Define the color of the notifications
  */
-type Type = 'success' | 'warning' | 'danger';
+type Type = 'success' | 'warning' | 'danger'
 
 /**
  * Requires a string with 2 keywords for vertical and horizontal postion.
  * @defaultvalue "top right"
  * @see https://github.com/eliutgon/buzz-notify#position
  */
-type Position = 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';
+type Position = 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'
 
 /**
  * Define the build-in transition effect
  */
-type Transition = 'fade' | 'bounce' | 'slide-blurred';
+type Transition = 'fade' | 'bounce' | 'slide-blurred'
 
 /**
  * Icon definitions
  */
-type Icons = Record<Type, string>;
+type Icons = Record<Type, string>
 
 interface NotifyOptions {
   /**
    * Title of the notification
    */
-  title: string;
+  title: string
   /**
    * Sets the HTML markup contained within the notification.
    */
-  html?: string;
+  html?: string
   /**
    * Sets the type of the notification.
    * @defaultvalue "success"
    */
-  type?: Type;
+  type?: Type
   /**
    * Sets the position of the notification.
    * @defaultvalue "top-right"
    */
-  position?: Position;
+  position?: Position
   /**
    * Auto close notification. Set in ms (milliseconds). If the duration is a negative number, the notification will not be removed.
    * @defaultvalue 3000
    */
-  duration?: number;
+  duration?: number
   /**
    * Sets the transition effect.
    * @defaultvalue "fade"
    */
-  transition?: Transition;
+  transition?: Transition
   /**
    * Sets the configuration of the notification.
    */
@@ -56,8 +56,8 @@ interface NotifyOptions {
     /**
      * Override the default icons.
      */
-    icons: Icons;
-  } | null;
+    icons: Icons
+  } | null
 }
 
 const icons: Icons = {
@@ -67,17 +67,9 @@ const icons: Icons = {
     '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#856404" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg>',
   danger:
     '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#721c24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M12 9v2m0 4v.01" /><path d="M5.07 19H19a2 2 0 0 0 1.75 -2.75L13.75 4a2 2 0 0 0 -3.5 0L3.25 16.25a2 2 0 0 0 1.75 2.75" /></svg>',
-};
-
-const TRANSITION_DURATION = 400;
-
-function triggerEvenet(eventName: string) {
-  const event = new CustomEvent(eventName, {
-    bubbles: true,
-    cancelable: true,
-  });
-  document.dispatchEvent(event);
 }
+
+const TRANSITION_DURATION = 400
 
 /**
  * Show a notification
@@ -99,85 +91,94 @@ export const Notify = (
   }: NotifyOptions,
   callback?: () => void,
 ) => {
-  const notify = document.querySelector('#notify')!;
+  const notify = document.querySelector('#notify')!
+  const NotifyEvent = new CustomEvent('notifyclose', { duration })
 
   if (!notify.querySelector(`[data-notify='${position}']`)) {
-    const notifyWrapper = document.createElement('div');
+    const notifyWrapper = document.createElement('div')
 
-    notifyWrapper.setAttribute('data-notify', position);
+    notifyWrapper.setAttribute('data-notify', position)
 
-    notify.appendChild(notifyWrapper);
+    notify.appendChild(notifyWrapper)
   }
 
-  const notifyWrapper = notify.querySelector(`[data-notify='${position}']`)!;
+  const notifyWrapper = notify.querySelector(`[data-notify='${position}']`)!
 
-  const notifyContent = document.createElement('div');
+  const notifyContent = document.createElement('div')
 
-  notifyContent.setAttribute('class', `notify notify--${type}`);
+  notifyContent.setAttribute('class', `notify notify--${type}`)
 
   // Accesibility attributes
-  notifyContent.setAttribute('role', 'alert');
-  notifyContent.setAttribute('aria-live', 'assertive');
-  notifyContent.setAttribute('aria-atomic', 'true');
+  notifyContent.setAttribute('role', 'alert')
+  notifyContent.setAttribute('aria-live', 'assertive')
+  notifyContent.setAttribute('aria-atomic', 'true')
 
   // Grid style
-  notifyContent.setAttribute('style', "---area: 'icon title'");
+  notifyContent.setAttribute('style', "---area: 'icon title'")
 
-  notifyContent.classList.add(`${transition}-active`);
-  notifyContent.classList.add(`${transition}-active`);
+  notifyContent.classList.add(`${transition}-active`)
+  notifyContent.classList.add(`${transition}-active`)
 
   setTimeout(() => {
-    notifyContent.classList.remove(`${transition}-active`);
-  }, TRANSITION_DURATION);
+    notifyContent.classList.remove(`${transition}-active`)
+  }, TRANSITION_DURATION)
 
-  notifyContent.innerHTML = `<div class="notify__title">${title}</div>`;
+  notifyContent.innerHTML = `<div class="notify__title">${title}</div>`
 
   if (html) {
-    notifyContent.setAttribute('style', "---area: 'icon title' 'icon content'");
-    notifyContent.innerHTML += `<div class="notify__content">${html}</div>`;
+    notifyContent.setAttribute('style', "---area: 'icon title' 'icon content'")
+    notifyContent.innerHTML += `<div class="notify__content">${html}</div>`
   }
 
   // If has custom icons
-  const _icons = { ...icons, ...config?.icons };
+  const _icons = { ...icons, ...config?.icons }
 
-  notifyContent.insertAdjacentHTML('afterbegin', `<span class="notify__icon">${_icons[type]}</span>`);
+  notifyContent.insertAdjacentHTML('afterbegin', `<span class="notify__icon">${_icons[type]}</span>`)
 
-  const [vertical] = position.split('-');
+  const [vertical] = position.split('-')
 
   if (vertical === 'top') {
-    notifyWrapper.insertAdjacentElement('afterbegin', notifyContent);
+    notifyWrapper.insertAdjacentElement('afterbegin', notifyContent)
   }
 
   if (vertical === 'bottom') {
-    notifyWrapper.insertAdjacentElement('beforeend', notifyContent);
+    notifyWrapper.insertAdjacentElement('beforeend', notifyContent)
   }
 
   // Check if duration is positive
   if (duration * 1 > 0) {
     setTimeout(() => {
-      notifyContent.classList.add(`${transition}-leave`);
-    }, duration - TRANSITION_DURATION / 2);
+      notifyContent.classList.add(`${transition}-leave`)
+    }, duration - TRANSITION_DURATION / 2)
 
     setTimeout(() => {
       // If callback exists - execute it
       if (typeof callback === 'function') {
-        callback();
+        callback()
       }
 
-      notifyContent.remove();
-      triggerEvenet('notifyclose');
-    }, duration);
+      notifyContent.remove()
+    }, duration)
   }
 
   notifyContent.addEventListener('click', function () {
-    notifyContent.classList.add(`${transition}-leave`);
+    notifyContent.classList.add(`${transition}-leave`)
     setTimeout(() => {
-      this.remove();
-      triggerEvenet('notifyclose');
-    }, TRANSITION_DURATION / 2);
-  });
-};
+      this.remove()
+      notifyContent.dispatchEvent(NotifyEvent)
+    }, TRANSITION_DURATION / 2)
+  })
 
-document.addEventListener('notifyclose', () => {
-  console.log('wtf');
-});
+  return notifyContent
+}
+
+export const NotifyAsync = (options: NotifyOptions) => {
+  const notifyContent = Notify(options)
+  return new Promise<void>((resolve) => {
+    const timer = setTimeout(resolve, options?.duration || 3000)
+    notifyContent.addEventListener('notifyclose', () => {
+      resolve()
+      clearTimeout(timer)
+    })
+  })
+}
