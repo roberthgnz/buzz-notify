@@ -71,6 +71,14 @@ const icons: Icons = {
 
 const TRANSITION_DURATION = 400;
 
+function triggerEvenet(eventName: string) {
+  const event = new CustomEvent(eventName, {
+    bubbles: true,
+    cancelable: true,
+  });
+  document.dispatchEvent(event);
+}
+
 /**
  * Show a notification
  * @param {NotifyOptions} options - Options for the notification
@@ -89,7 +97,7 @@ export const Notify = (
       icons,
     },
   }: NotifyOptions,
-  callback: () => void,
+  callback?: () => void,
 ) => {
   const notify = document.querySelector('#notify')!;
 
@@ -157,14 +165,19 @@ export const Notify = (
       }
 
       notifyContent.remove();
+      triggerEvenet('notifyclose');
     }, duration);
   }
 
   notifyContent.addEventListener('click', function () {
     notifyContent.classList.add(`${transition}-leave`);
-
     setTimeout(() => {
       this.remove();
+      triggerEvenet('notifyclose');
     }, TRANSITION_DURATION / 2);
   });
 };
+
+document.addEventListener('notifyclose', () => {
+  console.log('wtf');
+});
