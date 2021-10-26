@@ -1,6 +1,6 @@
 {
   "name": "@reliutg/buzz-notify",
-  "version": "2.3.3",
+  "version": "2.4.0",
   "description": "Small and Clean JavaScript Toast Notifications",
   "jsdelivr": "./dist/index.js",
   "browser": "./dist/index.js",
@@ -27,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eliutgon/buzz-notify.git"
+    "url": "git+https://github.com/eliut505/buzz-notify.git"
   },
   "keywords": [
     "notification",
@@ -38,12 +38,12 @@
     "small",
     "tiny"
   ],
-  "author": "Eliut González (https://twitter.com/eliutgon)",
+  "author": "Eliut González (https://twitter.com/eliut505)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/eliutgon/buzz-notify/issues"
+    "url": "https://github.com/eliut505/buzz-notify/issues"
   },
-  "homepage": "https://github.com/eliutgon/buzz-notify#readme",
+  "homepage": "https://github.com/eliut505/buzz-notify#readme",
   "devDependencies": {
     "@commitlint/cli": "^13.2.0",
     "@commitlint/config-conventional": "^13.2.0",
