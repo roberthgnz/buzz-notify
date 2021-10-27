@@ -92,7 +92,7 @@ export const Notify = (
   callback?: () => void,
 ) => {
   const notify = document.querySelector('#notify')!
-  const NotifyEvent = new CustomEvent('notifyclose', { duration })
+  const NotifyEvent = new CustomEvent('notifyclose')
 
   if (!notify.querySelector(`[data-notify='${position}']`)) {
     const notifyWrapper = document.createElement('div')
