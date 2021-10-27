@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "build": "rimraf dist && node ./scripts/build.js",
-    "declaration": "tsc src/index.ts --declaration --emitDeclarationOnly --declarationDir .",
+    "declaration": "rimraf index.d.ts && tsc -p tsconfig.json --declaration --emitDeclarationOnly --declarationDir .",
     "prepare": "npm run build",
     "version": "npm run declaration && git add -A src",
     "postversion": "git push && git push --tags",
