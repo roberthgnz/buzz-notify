@@ -61,6 +61,6 @@ interface NotifyOptions {
  * @param {Function} callback - Callback function executed when the notification is closed.
  * @example Notify({ title: "My notification", type: "success" });
  */
-export declare const Notify: ({ title, html, type, position, duration, transition, config, }: NotifyOptions, callback?: () => void) => HTMLDivElement;
-export declare const NotifyAsync: (options: NotifyOptions) => any;
+export declare const Notify: ({ title, html, type, position, duration, transition, config, }: NotifyOptions, callback?: (() => void) | undefined) => HTMLDivElement;
+export declare const NotifyAsync: (options: NotifyOptions) => Promise<void>;
 export {};
