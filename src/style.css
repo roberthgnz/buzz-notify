@@ -267,10 +267,13 @@
 }
 #notify .notify {
   box-sizing: border-box;
+  width: fit-content;
   display: grid;
   grid-template-areas: var(---area);
   column-gap: 0.33rem;
   padding: 0.25rem;
+  padding-right: calc(0.33rem + 0.25rem);
+  margin: auto;
   margin-bottom: 1rem;
   border: 1px solid transparent;
   border-radius: 0.25rem;
