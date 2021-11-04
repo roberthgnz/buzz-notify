@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ES5",
+    "target": "ESNext",
     "lib": ["ESNext", "DOM"],
+    "module": "ESNext",
+    "moduleResolution": "node",
     "declaration": true,
     "outDir": "dist",
     "esModuleInterop": true,
