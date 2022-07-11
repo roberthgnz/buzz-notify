@@ -94,6 +94,10 @@ export const Notify = (
   const notify = document.querySelector('#notify')!
   const NotifyEvent = new CustomEvent('notifyclose')
 
+  if (!['top-left', 'top-center', 'top-right', 'bottom-left', 'bottom-center', 'bottom-right'].includes(position)) {
+    throw new Error('Position is not valid')
+  }
+
   if (!notify.querySelector(`[data-notify='${position}']`)) {
     const notifyWrapper = document.createElement('div')
 
