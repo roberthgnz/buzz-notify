@@ -27,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eliut505/buzz-notify.git"
+    "url": "git+https://github.com/eliutdev/buzz-notify.git"
   },
   "keywords": [
     "notification",
@@ -38,12 +38,12 @@
     "small",
     "tiny"
   ],
-  "author": "Eliut González (https://twitter.com/eliut505)",
+  "author": "Eliut González (https://twitter.com/eliutdev)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/eliut505/buzz-notify/issues"
+    "url": "https://github.com/eliutdev/buzz-notify/issues"
   },
-  "homepage": "https://github.com/eliut505/buzz-notify#readme",
+  "homepage": "https://github.com/eliutdev/buzz-notify#readme",
   "devDependencies": {
     "@commitlint/cli": "^13.2.0",
     "@commitlint/config-conventional": "^13.2.0",
