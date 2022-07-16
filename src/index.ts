@@ -1,7 +1,7 @@
 /**
  * Define the color of the notifications
  */
-type Type = 'success' | 'warning' | 'danger'
+type Type = 'success' | 'warning' | 'danger' | 'info'
 
 /**
  * Requires a string with 2 keywords for vertical and horizontal postion.
@@ -60,16 +60,34 @@ interface NotifyOptions {
   } | null
 }
 
+interface NotifyElementOptions {
+  type: Type
+  position: Position
+  duration: number
+  transition: Transition
+}
+
 const icons: Icons = {
   success:
-    '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#155724" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9" /><path d="M9 12l2 2l4 -4" /></svg>',
+    '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9" /><path d="M9 12l2 2l4 -4" /></svg>',
   warning:
-    '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#856404" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg>',
+    '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg>',
   danger:
-    '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#721c24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M12 9v2m0 4v.01" /><path d="M5.07 19H19a2 2 0 0 0 1.75 -2.75L13.75 4a2 2 0 0 0 -3.5 0L3.25 16.25a2 2 0 0 0 1.75 2.75" /></svg>',
+    '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M12 9v2m0 4v.01" /><path d="M5.07 19H19a2 2 0 0 0 1.75 -2.75L13.75 4a2 2 0 0 0 -3.5 0L3.25 16.25a2 2 0 0 0 1.75 2.75" /></svg>',
+  info: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>',
 }
 
 const TRANSITION_DURATION = 400
+
+const getOptions = (element: Element): NotifyElementOptions => {
+  const options = {
+    type: (element.getAttribute('data-notify-type') || 'success') as Type,
+    position: (element.getAttribute('data-notify-position') || 'top-right') as Position,
+    duration: (element.getAttribute('data-notify-duration') || 3000) as number,
+    transition: (element.getAttribute('data-notify-transition') || 'fade') as Transition,
+  }
+  return options
+}
 
 /**
  * Show a notification
@@ -77,36 +95,30 @@ const TRANSITION_DURATION = 400
  * @param {Function} callback - Callback function executed when the notification is closed.
  * @example Notify({ title: "My notification", type: "success" });
  */
-export const Notify = (
-  {
-    title,
-    html,
-    type = 'success',
-    position = 'top-right',
-    duration = 3000,
-    transition = 'fade',
-    config = {
-      icons,
-    },
-  }: NotifyOptions,
-  callback?: () => void,
-) => {
-  const notify = document.querySelector('#notify')!
+export const Notify = (options: NotifyOptions, callback?: () => void) => {
+  const notify = document.querySelector('[data-notify]') as Element
+
+  if (!notify) {
+    throw new Error('No notification element found')
+  }
+
   const NotifyEvent = new CustomEvent('notifyclose')
+
+  const { title, html, type, position, duration, transition, config } = { ...getOptions(notify), ...options }
 
   if (!['top-left', 'top-center', 'top-right', 'bottom-left', 'bottom-center', 'bottom-right'].includes(position)) {
     throw new Error('Position is not valid')
   }
 
-  if (!notify.querySelector(`[data-notify='${position}']`)) {
+  if (!notify.querySelector(`[data-notify-wrapper-position='${position}']`)) {
     const notifyWrapper = document.createElement('div')
 
-    notifyWrapper.setAttribute('data-notify', position)
+    notifyWrapper.setAttribute('data-notify-wrapper-position', position)
 
     notify.appendChild(notifyWrapper)
   }
 
-  const notifyWrapper = notify.querySelector(`[data-notify='${position}']`)!
+  const notifyWrapper = notify.querySelector(`[data-notify-wrapper-position='${position}']`)!
 
   const notifyContent = document.createElement('div')
 
@@ -137,7 +149,10 @@ export const Notify = (
   // If has custom icons
   const _icons = { ...icons, ...config?.icons }
 
-  notifyContent.insertAdjacentHTML('afterbegin', `<span class="notify__icon">${_icons[type]}</span>`)
+  notifyContent.insertAdjacentHTML(
+    'afterbegin',
+    `<span class="notify__icon" style="color: var(--bzn-color-${type})">${_icons[type]}</span>`,
+  )
 
   const [vertical] = position.split('-')
 
@@ -150,10 +165,10 @@ export const Notify = (
   }
 
   // Check if duration is positive
-  if (duration * 1 > 0) {
+  if (+duration * 1 > 0) {
     setTimeout(() => {
       notifyContent.classList.add(`${transition}-leave`)
-    }, duration - TRANSITION_DURATION / 2)
+    }, +duration - TRANSITION_DURATION / 2)
 
     setTimeout(() => {
       // If callback exists - execute it
@@ -163,7 +178,7 @@ export const Notify = (
 
       notifyContent.dispatchEvent(NotifyEvent)
       notifyContent.remove()
-    }, duration)
+    }, +duration)
   }
 
   notifyContent.addEventListener('click', function () {
