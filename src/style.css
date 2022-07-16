@@ -4,15 +4,18 @@
 :root {
   --bzn-trans-cubic-bezier: cubic-bezier(0.215, 0.61, 0.455, 1);
   --bzn-trans-duration: 0.4s;
-  --bzn-color-success: #155724;
-  --bzn-background-color-success: #d4edda;
-  --bzn-border-color-success: #c3e6cb;
-  --bzn-color-danger: #721c24;
+  --bzn-color-success: #0f5132;
+  --bzn-background-color-success: #d1e7dd;
+  --bzn-border-color-success: #badbcc;
+  --bzn-color-danger: #842029;
   --bzn-background-color-danger: #f8d7da;
-  --bzn-border-color-danger: #f5c6cb;
-  --bzn-color-warning: #856404;
+  --bzn-border-color-danger: #f5c2c7;
+  --bzn-color-warning: #664d03;
   --bzn-background-color-warning: #fff3cd;
-  --bzn-border-color-warning: #ffeeba;
+  --bzn-border-color-warning: #ffecb5;
+  --bzn-color-info: #055160;
+  --bzn-background-color-info: #cff4fc;
+  --bzn-border-color-info: #b6effb;
 }
 @keyframes fadeOutTop {
   0% {
@@ -193,79 +196,79 @@
 /* ----------------------------------------------
 * GENERAL
  * ---------------------------------------------- */
-#notify {
+[data-notify] {
   position: relative;
   z-index: 999999;
   display: flex;
   flex-direction: column;
   width: 10vw;
 }
-#notify [data-notify] {
+[data-notify] [data-notify-wrapper-position] {
   position: fixed;
 }
-#notify [data-notify='top-left'] {
+[data-notify] [data-notify-wrapper-position='top-left'] {
   top: 10px;
   left: 10px;
 }
-#notify [data-notify='top-center'] {
+[data-notify] [data-notify-wrapper-position='top-center'] {
   top: 10px;
   left: 50%;
   transform: translateX(-50%);
 }
-#notify [data-notify='top-right'] {
+[data-notify] [data-notify-wrapper-position='top-right'] {
   top: 10px;
   right: 10px;
 }
-#notify [data-notify='bottom-left'] {
+[data-notify] [data-notify-wrapper-position='bottom-left'] {
   bottom: 10px;
   left: 10px;
 }
-#notify [data-notify='bottom-center'] {
+[data-notify] [data-notify-wrapper-position='bottom-center'] {
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
 }
-#notify [data-notify='bottom-right'] {
+[data-notify] [data-notify-wrapper-position='bottom-right'] {
   bottom: 10px;
   right: 10px;
 }
-#notify [data-notify|='top'] .fade-active {
+[data-notify] [data-notify-wrapper-position|='top'] .fade-active {
   animation: fadeInTop var(--bzn-trans-duration);
 }
-#notify [data-notify|='bottom'] .fade-active {
+[data-notify] [data-notify-wrapper-position|='bottom'] .fade-active {
   animation: fadeInBottom var(--bzn-trans-duration);
 }
-#notify [data-notify|='top'] .fade-leave {
+[data-notify] [data-notify-wrapper-position|='top'] .fade-leave {
   animation: fadeOutTop var(--bzn-trans-duration);
 }
-#notify [data-notify|='bottom'] .fade-leave {
+[data-notify] [data-notify-wrapper-position|='bottom'] .fade-leave {
   animation: fadeOutBottom var(--bzn-trans-duration);
 }
-#notify [data-notify|='top'] .bounce-active {
+[data-notify] [data-notify-wrapper-position|='top'] .bounce-active {
   animation: bounceInDown var(--bzn-trans-duration);
 }
-#notify [data-notify|='bottom'] .bounce-active {
+[data-notify] [data-notify-wrapper-position|='bottom'] .bounce-active {
   animation: bounceInUp var(--bzn-trans-duration);
 }
-#notify [data-notify|='top'] .bounce-leave {
+[data-notify] [data-notify-wrapper-position|='top'] .bounce-leave {
   animation: bounceOutUp var(--bzn-trans-duration);
 }
-#notify [data-notify|='bottom'] .bounce-leave {
+[data-notify] [data-notify-wrapper-position|='bottom'] .bounce-leave {
   animation: bounceOutDown var(--bzn-trans-duration);
 }
-#notify [data-notify|='top'] .slide-blurred-active {
+[data-notify] [data-notify-wrapper-position|='top'] .slide-blurred-active {
   animation: slideInBlurredTop var(--bzn-trans-duration);
 }
-#notify [data-notify|='bottom'] .slide-blurred-active {
+[data-notify] [data-notify-wrapper-position|='bottom'] .slide-blurred-active {
   animation: slideInBlurredBottom var(--bzn-trans-duration);
 }
-#notify [data-notify|='top'] .slide-blurred-leave {
+[data-notify] [data-notify-wrapper-position|='top'] .slide-blurred-leave {
   animation: slideOutBlurredTop var(--bzn-trans-duration);
 }
-#notify [data-notify|='bottom'] .slide-blurred-leave {
+[data-notify] [data-notify-wrapper-position|='bottom'] .slide-blurred-leave {
   animation: slideOutBlurredBottom var(--bzn-trans-duration);
 }
-#notify .notify {
+[data-notify] .notify {
   box-sizing: border-box;
   width: fit-content;
   display: grid;
@@ -281,33 +284,38 @@
   user-select: none;
   cursor: pointer;
 }
-#notify .notify__title {
+[data-notify] .notify__title {
   grid-area: title;
   align-self: center;
   font-weight: 500;
   color: #0b2e13;
 }
-#notify .notify__icon {
+[data-notify] .notify__icon {
   display: flex;
   grid-area: icon;
   align-self: center;
   justify-self: center;
 }
-#notify .notify__content {
+[data-notify] .notify__content {
   grid-area: content;
 }
-#notify .notify--success {
+[data-notify] .notify--success {
   color: var(--bzn-color-success);
   background-color: var(--bzn-background-color-success);
   border-color: var(--bzn-border-color-success);
 }
-#notify .notify--danger {
+[data-notify] .notify--danger {
   color: var(--bzn-color-danger);
   background-color: var(--bzn-background-color-danger);
   border-color: var(--bzn-border-color-danger);
 }
-#notify .notify--warning {
+[data-notify] .notify--warning {
   color: var(--bzn-color-warning);
   background-color: var(--bzn-background-color-warning);
   border-color: var(--bzn-border-color-warning);
+}
+[data-notify] .notify--info {
+  color: var(--bzn-color-info);
+  background-color: var(--bzn-background-color-info);
+  border-color: var(--bzn-border-color-info);
 }
