@@ -20,6 +20,12 @@ import { Notify } from '@reliutg/buzz-notify'
 import '@reliutg/buzz-notify/dist/buzz-notify.css'
 ```
 
+Now the data-attribute is used to define the notification container:
+```html
+<div id="notify"></div> // <-- Before 2.5.5
+<div data-notify></div> // <-- After 2.5.5
+```
+
 ## Features
 
 ✨ Beautiful and easy to use
@@ -66,7 +72,19 @@ or
 In `index.html`:
 
 ```html
-<div id="notify"></div>
+<div data-notify></div>
+```
+
+Define global options for all notifications.
+
+```html
+<div 
+  data-notify
+  data-notify-type="warning" 
+  data-notify-position="bottom-center"
+  data-notify-transition="bounce" 
+  data-notify-duration="2000">
+</div>
 ```
 
 In `index.js`:
