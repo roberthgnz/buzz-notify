@@ -96,7 +96,12 @@ const getOptions = (element: Element): NotifyElementOptions => {
  * @example Notify({ title: "My notification", type: "success" });
  */
 export const Notify = (options: NotifyOptions, callback?: () => void) => {
-  const notify = document.querySelector('[data-notify]') as Element
+  let notify = document.querySelector('[data-notify]') as Element
+
+  // Support for old version of buzz-notify
+  if (!notify) {
+    notify = document.querySelector('#notify') as Element
+  }
 
   if (!notify) {
     throw new Error('No notification element found')
@@ -184,6 +189,7 @@ export const Notify = (options: NotifyOptions, callback?: () => void) => {
   notifyContent.addEventListener('click', function () {
     notifyContent.classList.add(`${transition}-leave`)
     setTimeout(() => {
+      // TODO: Clean up
       this.remove()
       notifyContent.dispatchEvent(NotifyEvent)
     }, TRANSITION_DURATION / 2)
