@@ -22,8 +22,8 @@ import '@reliutg/buzz-notify/dist/buzz-notify.css'
 
 Now the data-attribute is used to define the notification container:
 ```html
-<div id="notify"></div> // <-- Before 2.5.5
-<div data-notify></div> // <-- After 2.5.5
+<div id="notify"></div> // <-- Before 2.5.0
+<div data-notify></div> // <-- After 2.5.0
 ```
 
 ## Features
