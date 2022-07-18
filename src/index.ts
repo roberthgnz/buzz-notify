@@ -102,10 +102,10 @@ export const Notify = (options: NotifyOptions, callback?: () => void) => {
   if (!notify) {
     notify = document.querySelector('#notify') as Element
     if (notify) {
+      notify.setAttribute('data-notify', '')
       console.warn(
         'buzz-notify: The old version of buzz-notify is deprecated. Please visit the new version at https://github.com/eliutdev/buzz-notify',
       )
-      throw new Error('The old version of buzz-notify is deprecated. Please use the new version.')
     }
   }
 
