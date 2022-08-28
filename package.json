@@ -17,7 +17,7 @@
     "prepare": "npm run build",
     "version": "npm run declaration && git add -A src",
     "postversion": "git push && git push --tags",
-    "postinstall": "git config core.hooksPath ./git-hooks"
+    "git-hooks": "git config core.hooksPath ./git-hooks"
   },
   "lint-staged": {
     "src": [
