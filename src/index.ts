@@ -140,22 +140,23 @@ export const Notify = (options: NotifyOptions, callback?: () => void) => {
   notifyContent.setAttribute('aria-live', 'assertive')
   notifyContent.setAttribute('aria-atomic', 'true')
 
-  // Grid style
-  notifyContent.setAttribute('style', "---area: 'icon title'")
-
-  notifyContent.classList.add(`${transition}-active`)
   notifyContent.classList.add(`${transition}-active`)
 
   setTimeout(() => {
     notifyContent.classList.remove(`${transition}-active`)
   }, TRANSITION_DURATION)
 
-  notifyContent.innerHTML = `<div class="notify__title">${title}</div>`
+  let content = '<div class="notify__content">'
+
+  content += `<div class="notify__title">${title}</div>`
 
   if (html) {
-    notifyContent.setAttribute('style', "---area: 'icon title' 'icon content'")
-    notifyContent.innerHTML += `<div class="notify__content">${html}</div>`
+    content += `${html}`
   }
+
+  content += '</div>'
+
+  notifyContent.innerHTML = content
 
   // If has custom icons
   const _icons = { ...icons, ...config?.icons }
