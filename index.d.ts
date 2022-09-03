@@ -62,5 +62,5 @@ interface NotifyOptions {
  * @example Notify({ title: "My notification", type: "success" });
  */
 export declare const Notify: (options: NotifyOptions, callback?: () => void) => HTMLDivElement;
-export declare const NotifyAsync: (options: NotifyOptions) => Promise<void>;
+export declare const NotifyAsync: (options: NotifyOptions) => any;
 export {};
