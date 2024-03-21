@@ -178,9 +178,12 @@ export const Notify = (options: NotifyOptions, callback?: () => void) => {
 
   // Check if duration is positive
   if (+duration * 1 > 0) {
-    setTimeout(() => {
-      notifyContent.classList.add(`${transition}-leave`)
-    }, +duration - TRANSITION_DURATION / 2)
+    setTimeout(
+      () => {
+        notifyContent.classList.add(`${transition}-leave`)
+      },
+      +duration - TRANSITION_DURATION / 2,
+    )
 
     setTimeout(() => {
       // If callback exists - execute it
