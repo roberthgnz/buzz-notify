@@ -12,6 +12,7 @@
     "dist/**/*"
   ],
   "scripts": {
+    "dev": "esbuild src/index.ts --bundle --sourcemap --outfile=dist/index.js --watch",
     "build": "rimraf dist && node ./scripts/build.js",
     "declaration": "tsc src/index.ts --declaration --emitDeclarationOnly --declarationDir .",
     "prepare": "npm run build",
