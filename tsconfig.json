@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "lib": ["es2016"],
+    "lib": ["es2016", "DOM"],
     "module": "system",
     "noImplicitAny": true,
     "removeComments": true,
