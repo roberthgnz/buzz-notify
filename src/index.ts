@@ -79,7 +79,7 @@ const icons: Icons = {
 
 const TRANSITION_DURATION = 400
 
-const getOptions = (element: Element): NotifyElementOptions => {
+const getOptions = (element: HTMLElement): NotifyElementOptions => {
   const options = {
     type: (element.getAttribute('data-notify-type') || 'success') as Type,
     position: (element.getAttribute('data-notify-position') || 'top-right') as Position,
@@ -96,11 +96,11 @@ const getOptions = (element: Element): NotifyElementOptions => {
  * @example Notify({ title: "My notification", type: "success" });
  */
 export const Notify = (options: NotifyOptions, callback?: () => void) => {
-  let notify = document.querySelector('[data-notify]') as Element
+  let notify = document.querySelector('[data-notify]') as HTMLElement
 
   // Support for old version of buzz-notify
   if (!notify) {
-    notify = document.querySelector('#notify') as Element
+    notify = document.querySelector('#notify') as HTMLElement
     if (notify) {
       notify.setAttribute('data-notify', '')
       console.warn(
@@ -116,6 +116,8 @@ export const Notify = (options: NotifyOptions, callback?: () => void) => {
   const NotifyEvent = new CustomEvent('notifyclose')
 
   const { title, html, type, position, duration, transition, config } = { ...getOptions(notify), ...options }
+
+  const _duration = Number(duration)
 
   if (!['top-left', 'top-center', 'top-right', 'bottom-left', 'bottom-center', 'bottom-right'].includes(position)) {
     throw new Error('Position is not valid')
@@ -177,12 +179,12 @@ export const Notify = (options: NotifyOptions, callback?: () => void) => {
   }
 
   // Check if duration is positive
-  if (+duration * 1 > 0) {
+  if (_duration * 1 > 0) {
     setTimeout(
       () => {
         notifyContent.classList.add(`${transition}-leave`)
       },
-      +duration - TRANSITION_DURATION / 2,
+      _duration - TRANSITION_DURATION / 2,
     )
 
     setTimeout(() => {
@@ -193,14 +195,13 @@ export const Notify = (options: NotifyOptions, callback?: () => void) => {
 
       notifyContent.dispatchEvent(NotifyEvent)
       notifyContent.remove()
-    }, +duration)
+    }, _duration)
   }
 
-  notifyContent.addEventListener('click', function () {
+  notifyContent.addEventListener('click', () => {
     notifyContent.classList.add(`${transition}-leave`)
     setTimeout(() => {
-      // TODO: Clean up
-      this.remove()
+      notifyContent.remove()
       notifyContent.dispatchEvent(NotifyEvent)
     }, TRANSITION_DURATION / 2)
   })
