@@ -1,6 +1,6 @@
 {
   "name": "@reliutg/buzz-notify",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "description": "Small and Clean JavaScript Toast Notifications",
   "jsdelivr": "./dist/index.global.js",
   "browser": "./dist/index.global.js",
