@@ -27,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/groberth18/buzz-notify.git"
+    "url": "git+https://github.com/roberthgnz/buzz-notify.git"
   },
   "keywords": [
     "notification",
@@ -38,12 +38,12 @@
     "small",
     "tiny"
   ],
-  "author": "Eliut González (https://twitter.com/groberth18)",
+  "author": "Eliut González (https://twitter.com/roberthgnz)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/groberth18/buzz-notify/issues"
+    "url": "https://github.com/roberthgnz/buzz-notify/issues"
   },
-  "homepage": "https://github.com/groberth18/buzz-notify#readme",
+  "homepage": "https://github.com/roberthgnz/buzz-notify#readme",
   "devDependencies": {
     "@commitlint/cli": "^17.1.1",
     "@commitlint/config-conventional": "^17.1.0",
