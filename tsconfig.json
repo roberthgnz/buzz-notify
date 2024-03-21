@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "lib": ["es2016", "DOM"],
+    "lib": ["ESNext", "DOM"],
+    "target": "ESNext",
     "module": "system",
     "noImplicitAny": true,
     "removeComments": true,

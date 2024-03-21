@@ -2,19 +2,18 @@
   "name": "@reliutg/buzz-notify",
   "version": "2.6.0",
   "description": "Small and Clean JavaScript Toast Notifications",
-  "jsdelivr": "./dist/index.js",
-  "browser": "./dist/index.js",
-  "main": "./dist/esm/index.js",
-  "module": "./dist/esm/index.js",
-  "types": "./index.d.ts",
+  "jsdelivr": "./dist/index.global.js",
+  "browser": "./dist/index.global.js",
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "files": [
-    "index.d.ts",
-    "dist/**/*"
+    "dist/*"
   ],
   "scripts": {
-    "dev": "esbuild src/index.ts --bundle --sourcemap --format=esm --outfile=dist/esm/index.js --watch",
-    "build": "rimraf dist && node ./scripts/build.js",
-    "declaration": "tsc src/index.ts --declaration --emitDeclarationOnly --declarationDir .",
+    "dev": "tsup --watch --format esm",
+    "build": "tsup --format esm,iife && npm run declaration && node scripts/css-build.js",
+    "declaration": "tsup --dts-only",
     "prepare": "npm run build",
     "version": "git add -A src",
     "postversion": "git push && git push --tags",
@@ -51,14 +50,20 @@
     "@typescript-eslint/eslint-plugin": "^7.3.1",
     "@typescript-eslint/parser": "^7.3.1",
     "esbuild": "0.20.2",
-    "eslint": "^8.57.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^6.1.1",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
-    "rimraf": "5.0.5",
+    "tsup": "^8.0.2",
     "typescript": "5.4.3"
+  },
+  "tsup": {
+    "entry": [
+      "src/index.ts"
+    ],
+    "clean": true,
+    "globalName": "Notify"
   }
 }
