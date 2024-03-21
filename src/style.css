@@ -67,7 +67,6 @@
 }
 
 @keyframes bounceInDown {
-
   from,
   60%,
   75%,
@@ -100,7 +99,6 @@
 }
 
 @keyframes bounceInUp {
-
   from,
   60%,
   75%,
@@ -231,7 +229,7 @@
 }
 
 /* ----------------------------------------------
-* GENERAL
+ * GENERAL
  * ---------------------------------------------- */
 [data-notify] {
   position: relative;
@@ -331,12 +329,12 @@
   display: grid;
   grid-template-columns: max-content 1fr;
   column-gap: 0.5rem;
-  padding: 0.25rem;
-  padding-right: calc(0.5rem + 0.25rem);
+  padding: 0.5rem;
+  padding-right: calc(0.5rem + 0.5rem);
   margin: auto;
   margin-bottom: 1rem;
   border: 1px solid transparent;
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
   transition: opacity var(--bzn-trans-duration);
   user-select: none;
   cursor: pointer;
@@ -344,13 +342,20 @@
 
 [data-notify] .notify__title {
   align-self: center;
-  font-weight: 500;
+  font-weight: bold;
   color: #0b2e13;
+}
+
+[data-notify] .notify__content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
 }
 
 [data-notify] .notify__icon {
   display: flex;
-  align-self: start;
+  align-self: center;
   justify-self: center;
 }
 
