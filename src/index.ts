@@ -6,7 +6,7 @@ type Type = 'success' | 'warning' | 'danger' | 'info'
 /**
  * Requires a string with 2 keywords for vertical and horizontal postion.
  * @defaultvalue "top right"
- * @see https://github.com/eliutgon/buzz-notify#position
+ * @see https://github.com/roberthgnz/buzz-notify#position
  */
 type Position = 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right'
 

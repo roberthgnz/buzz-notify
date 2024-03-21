@@ -1,4 +1,4 @@
-[![](https://img.shields.io/jsdelivr/npm/hm/@reliutg/buzz-notify)](https://www.jsdelivr.com/package/npm/@reliutg/buzz-notify) [![GitHub issues](https://img.shields.io/github/issues/eliutgon/buzz-notify)](https://github.com/eliutgon/buzz-notify/issues) [![GitHub forks](https://img.shields.io/github/forks/eliutgon/buzz-notify)](https://github.com/eliutgon/buzz-notify/network) [![GitHub stars](https://img.shields.io/github/stars/eliutgon/buzz-notify)](https://github.com/eliutgon/buzz-notify/stargazers)
+[![](https://img.shields.io/jsdelivr/npm/hm/@reliutg/buzz-notify)](https://www.jsdelivr.com/package/npm/@reliutg/buzz-notify) [![GitHub issues](https://img.shields.io/github/issues/roberthgnz/buzz-notify)](https://github.com/roberthgnz/buzz-notify/issues) [![GitHub forks](https://img.shields.io/github/forks/roberthgnz/buzz-notify)](https://github.com/roberthgnz/buzz-notify/network) [![GitHub stars](https://img.shields.io/github/stars/roberthgnz/buzz-notify)](https://github.com/roberthgnz/buzz-notify/stargazers)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 
@@ -237,7 +237,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="http://cutt.ly/dmxCq0G"><img src="https://avatars.githubusercontent.com/u/52201020?v=4?s=100" width="100px;" alt=""/><br /><sub><b>krau5</b></sub></a><br /><a href="https://github.com/eliutgon/buzz-notify/commits?author=Krausso" title="Code">💻</a> <a href="#maintenance-Krausso" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="http://cutt.ly/dmxCq0G"><img src="https://avatars.githubusercontent.com/u/52201020?v=4?s=100" width="100px;" alt=""/><br /><sub><b>krau5</b></sub></a><br /><a href="https://github.com/roberthgnz/buzz-notify/commits?author=Krausso" title="Code">💻</a> <a href="#maintenance-Krausso" title="Maintenance">🚧</a></td>
   </tr>
 </table>
 
